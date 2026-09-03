@@ -1,0 +1,62 @@
+---
+import { perfil } from "../data/perfil";
+
+const enlaces = [
+  { href: "/#sobre-mi", texto: "Sobre mí" },
+  { href: "/#proyectos", texto: "Proyectos" },
+  { href: "/#stack", texto: "Stack" },
+  { href: "/#experiencia", texto: "Experiencia" },
+  { href: "/#contacto", texto: "Contacto" },
+];
+---
+
+<header
+  class="sticky top-0 z-50 backdrop-blur"
+  style="background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border);"
+>
+  <nav class="wrap flex h-16 items-center justify-between gap-4">
+    <a href="/" class="font-semibold tracking-tight no-underline" style="color: var(--text)">
+      {perfil.nombre.split(" ")[0]}<span style="color: var(--accent)">.</span>
+    </a>
+
+    <ul class="hidden items-center gap-6 md:flex list-none m-0 p-0">
+      {
+        enlaces.map((e) => (
+          <li>
+            <a href={e.href} class="text-sm no-underline muted hover:opacity-70">
+              {e.texto}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex items-center gap-2">
+      <button
+        id="toggle-tema"
+        type="button"
+        aria-label="Cambiar tema claro/oscuro"
+        class="grid h-9 w-9 place-items-center rounded-lg"
+        style="border: 1px solid var(--border); color: var(--text-soft); background: transparent;"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+        </svg>
+      </button>
+      <a href="/#contacto" class="btn btn-primary hidden sm:inline-flex">Contactar</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const boton = document.getElementById("toggle-tema");
+  boton?.addEventListener("click", () => {
+    const raiz = document.documentElement;
+    const nuevo = raiz.dataset.theme === "dark" ? "light" : "dark";
+    raiz.dataset.theme = nuevo;
+    try {
+      localStorage.setItem("tema", nuevo);
+    } catch (e) {}
+  });
+</script>

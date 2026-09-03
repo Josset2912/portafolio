@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+import { perfil } from "../data/perfil";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+}
+
+const {
+  titulo = `${perfil.nombre} — ${perfil.titulo}`,
+  descripcion = perfil.claim,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph: cómo se ve el enlace al compartirlo en LinkedIn/WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script is:inline>
+      // Aplica el tema guardado antes de pintar, para evitar el "flash" blanco.
+      try {
+        const guardado = localStorage.getItem("tema");
+        if (guardado) document.documentElement.dataset.theme = guardado;
+        else if (window.matchMedia("(prefers-color-scheme: light)").matches)
+          document.documentElement.dataset.theme = "light";
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a href="#contenido" class="sr-only focus:not-sr-only">Ir al contenido</a>
+    <Nav />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

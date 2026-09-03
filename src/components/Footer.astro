@@ -1,0 +1,21 @@
+---
+import { perfil } from "../data/perfil";
+const anio = new Date().getFullYear();
+---
+
+<footer style="border-top: 1px solid var(--border)" class="mt-24">
+  <div class="wrap flex flex-col gap-3 py-8 text-sm sm:flex-row sm:items-center sm:justify-between">
+    <p class="muted m-0">© {anio} {perfil.nombre}. Hecho con Astro.</p>
+    <ul class="flex gap-4 list-none m-0 p-0">
+      {
+        perfil.redes.map((r) => (
+          <li>
+            <a href={r.url} target="_blank" rel="noopener noreferrer" class="link-accent">
+              {r.nombre}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>

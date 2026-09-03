@@ -1,0 +1,55 @@
+---
+import { proyectos } from "../data/perfil";
+---
+
+<section id="proyectos" class="wrap py-16" style="border-top: 1px solid var(--border)">
+  <div class="flex items-end justify-between gap-4">
+    <div>
+      <p class="section-title m-0">Proyectos</p>
+      <p class="muted mt-2 max-w-xl text-sm">
+        Cada proyecto cuenta el problema, lo que construí y el resultado medible.
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-8 grid gap-5 md:grid-cols-2">
+    {
+      proyectos.map((p) => (
+        <article class="card flex flex-col p-6">
+          <div class="flex items-start justify-between gap-3">
+            <h3 class="m-0 text-lg font-semibold leading-snug">{p.titulo}</h3>
+            {p.destacado && (
+              <span class="chip" style="color: var(--accent); border-color: var(--accent)">
+                Destacado
+              </span>
+            )}
+          </div>
+
+          <p class="muted mt-3 text-sm leading-relaxed">{p.resumen}</p>
+
+          <ul class="mt-4 flex flex-wrap gap-2 list-none m-0 p-0">
+            {p.stack.map((t) => (
+              <li class="chip">{t}</li>
+            ))}
+          </ul>
+
+          <div class="mt-6 flex flex-wrap items-center gap-4 text-sm">
+            <a href={`/proyectos/${p.slug}`} class="link-accent font-medium">
+              Ver caso completo →
+            </a>
+            {p.repo && (
+              <a href={p.repo} target="_blank" rel="noopener noreferrer" class="muted no-underline hover:opacity-70">
+                Código
+              </a>
+            )}
+            {p.demo && (
+              <a href={p.demo} target="_blank" rel="noopener noreferrer" class="muted no-underline hover:opacity-70">
+                Demo
+              </a>
+            )}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

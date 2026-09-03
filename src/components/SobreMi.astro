@@ -1,0 +1,16 @@
+---
+import { sobreMi } from "../data/perfil";
+---
+
+<section id="sobre-mi" class="wrap py-16" style="border-top: 1px solid var(--border)">
+  <p class="section-title m-0">Sobre mí</p>
+  <div class="mt-6 grid gap-5 md:grid-cols-3">
+    {
+      sobreMi.map((parrafo) => (
+        <p class="m-0 leading-relaxed" style="color: var(--text-soft)">
+          {parrafo}
+        </p>
+      ))
+    }
+  </div>
+</section>
