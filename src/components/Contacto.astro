@@ -2,31 +2,65 @@
 import { perfil } from "../data/perfil";
 ---
 
-<section id="contacto" class="wrap py-16" style="border-top: 1px solid var(--border)">
-  <div class="card p-8 sm:p-12">
-    <p class="section-title m-0">Contacto</p>
-    <h2 class="mt-3 mb-0 max-w-2xl text-2xl font-semibold leading-snug sm:text-3xl">
-      ¿Tienes un proyecto o una vacante donde pueda aportar?
-    </h2>
-    <p class="muted mt-4 max-w-xl leading-relaxed">
-      Respondo en menos de 24 horas. Cuéntame el contexto y el problema; te digo con
-      honestidad si puedo ayudarte.
-    </p>
+<section id="contacto" class="wrap py-20" style="border-top: 1px solid var(--border)">
+  <div class="card p-12 sm:p-16 glass-dark" style="position: relative; overflow: hidden;" data-animate="fade-up">
+    <div class="absolute inset-0 opacity-5 pointer-events-none"
+      style="background: radial-gradient(circle at 20% 50%, var(--accent) 0%, transparent 50%);">
+    </div>
 
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <a href={`mailto:${perfil.email}`} class="btn btn-primary">{perfil.email}</a>
-      {perfil.telefono && (
-        <a href={`https://wa.me/${perfil.telefono.replace(/\D/g, "")}`} class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
-          WhatsApp
+    <div class="relative z-10">
+      <p class="section-title m-0">Siguiente paso</p>
+
+      <h2 class="mt-4 mb-0 max-w-3xl text-3xl sm:text-4xl font-black leading-tight">
+        ¿Trabajamos juntos?
+      </h2>
+
+      <p class="muted mt-6 max-w-2xl text-lg leading-relaxed font-light">
+        Cuéntame sobre tu proyecto o el desafío que enfrenta tu equipo. Respondo en menos de 24 horas con ideas claras y sin vueltas.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a
+          href={`mailto:${perfil.email}`}
+          class="btn btn-primary px-8 py-4 text-lg font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+          style="display: inline-flex; align-items: center; gap: 8px;"
+        >
+          ✉️ {perfil.email}
         </a>
-      )}
-      {
-        perfil.redes.map((r) => (
-          <a href={r.url} class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
-            {r.nombre}
+
+        {perfil.telefono && (
+          <a
+            href={`https://wa.me/${perfil.telefono.replace(/\D/g, "")}`}
+            class="btn btn-ghost px-8 py-4 text-lg font-bold transition-all duration-300 hover:-translate-y-1"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="display: inline-flex; align-items: center; gap: 8px;"
+          >
+            💬 WhatsApp
           </a>
-        ))
-      }
+        )}
+      </div>
+
+      <div class="mt-10 pt-10" style="border-top: 1px solid var(--border);">
+        <p class="text-xs uppercase tracking-wider font-bold" style="color: var(--text-soft); margin-bottom: 1rem;">
+          Redes profesionales
+        </p>
+        <div class="flex gap-3 flex-wrap">
+          {
+            perfil.redes.map((r) => (
+              <a
+                href={r.url}
+                class="px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="border: 1px solid var(--border); color: var(--text); background: transparent; text-decoration: none;"
+              >
+                {r.nombre}
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
 </section>

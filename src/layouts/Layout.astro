@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { perfil } from "../data/perfil";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import scrollAnimations from "../scripts/scrollAnimations.js";
 
 interface Props {
   titulo?: string;
@@ -49,5 +50,38 @@ const {
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Scroll animations using Intersection Observer
+      document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const animType = entry.target.dataset.animate || 'fade-up';
+              entry.target.classList.add(`animate-${animType}`);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Observar elementos con data-animate
+        document.querySelectorAll('[data-animate]').forEach((el) => {
+          observer.observe(el);
+        });
+
+        // También observar articles automáticamente
+        document.querySelectorAll('article').forEach((el) => {
+          if (!el.dataset.animate) {
+            el.dataset.animate = 'fade-up';
+            observer.observe(el);
+          }
+        });
+      });
+    </script>
   </body>
 </html>
