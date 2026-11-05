@@ -124,6 +124,7 @@ export const perfil = {
   proyectos: [
     {
       nombre: "Blanco Dental",
+      caseStudy: "blanco-dental",
       descripcion:
         "Sistema web completo para gestión de clínica dental. Administra pacientes, citas, tratamientos, pagos y genera reportes con estadísticas mensuales. Incluye odontograma interactivo, imágenes en Cloudinary y roles con autenticación JWT.",
       descripcion_en:
@@ -146,6 +147,7 @@ export const perfil = {
     },
     {
       nombre: "NutriKids",
+      caseStudy: "nutrikids",
       descripcion:
         "Plataforma educativa para la prevención de la anemia infantil. Visualiza recetas nutritivas ricas en hierro organizadas por rango de edad, orientada a padres y cuidadores.",
       descripcion_en:
@@ -170,6 +172,7 @@ export const perfil = {
     },
     {
       nombre: "Consientete",
+      caseStudy: "consientete",
       descripcion:
         "Landing page para centro de belleza y cosmetica en Huacho. Presenta servicios de unas, maquillaje y tratamientos con diseno elegante, animaciones y seccion de contacto.",
       descripcion_en:
@@ -222,6 +225,14 @@ export const perfil = {
     { entidad: "SKILL", nombre: "Actualización en Microsoft Power BI" },
     { entidad: "Ing. Consultores", nombre: "Ofimática Profesional" },
   ],
+  // Agrega aquí tus recomendaciones de LinkedIn o de clientes
+  testimonios: [] as Array<{
+    nombre: string;
+    cargo: string;
+    empresa: string;
+    texto: string;
+    linkedin?: string;
+  }>,
   idiomas: [
     { idioma: "Español", nivel: "Nativo" },
     { idioma: "Inglés", nivel: "Intermedio" },

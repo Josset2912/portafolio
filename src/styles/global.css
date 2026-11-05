@@ -151,3 +151,92 @@ body {
 @media (prefers-reduced-motion: reduce) {
   @keyframes marquee-left { 0%, 100% { transform: none; } }
 }
+
+/* ── Skip link (accessibility) ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 999;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.15s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ── Print styles ── */
+@media print {
+  /* Hide non-content elements */
+  #cursor-dot,
+  #cursor-ring,
+  #scroll-top,
+  nav,
+  .avail-pill,
+  .proj-btn,
+  .cta-primary,
+  .cta-secondary,
+  .contact-form,
+  .form-divider,
+  footer,
+  .skip-link {
+    display: none !important;
+  }
+
+  /* Reset backgrounds and use printer-friendly colors */
+  :root {
+    --bg: #ffffff;
+    --surface: #f8f8f8;
+    --surface-2: #f0f0f0;
+    --border: #cccccc;
+    --text: #000000;
+    --muted: #333333;
+    --muted-2: #666666;
+    --accent: #007777;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 11pt;
+  }
+
+  /* Avoid page breaks inside cards */
+  .stat-card,
+  .main-tech-card,
+  .proj-wrapper,
+  section {
+    break-inside: avoid;
+  }
+
+  /* Show all sticky project cards normally */
+  .proj-wrapper {
+    position: relative !important;
+    top: auto !important;
+    z-index: auto !important;
+  }
+
+  /* Show only desktop layout */
+  .proj-mobile-list { display: none !important; }
+  .proj-desktop { display: block !important; }
+
+  /* Ensure links show their href */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.7em;
+    color: var(--muted-2);
+  }
+
+  /* Section spacing */
+  section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+}
