@@ -59,6 +59,39 @@ const {
     <div id="cursor-dot" aria-hidden="true"></div>
     <div id="cursor-ring" aria-hidden="true"></div>
     <slot />
+
+    <!-- Scroll to top -->
+    <button
+      id="scroll-top"
+      aria-label="Volver arriba"
+      style="
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid var(--accent-border);
+        background: var(--accent-bg);
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 40;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s, border-color 0.2s;
+        pointer-events: none;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      "
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <line x1="12" y1="19" x2="12" y2="5"/>
+        <polyline points="5 12 12 5 19 12"/>
+      </svg>
+    </button>
     <script>
       // Reveal elements — with a fallback so hidden panes don't stay blank
       const revealAll = () => {
@@ -85,6 +118,28 @@ const {
         const hidden = document.querySelectorAll(".reveal:not(.visible)");
         if (hidden.length === elements.length) revealAll();
       }, 1500);
+
+      // Scroll-to-top button
+      const scrollBtn = document.getElementById('scroll-top') as HTMLButtonElement | null;
+      if (scrollBtn) {
+        window.addEventListener('scroll', () => {
+          const show = window.scrollY > 400;
+          scrollBtn.style.opacity = show ? '1' : '0';
+          scrollBtn.style.transform = show ? 'translateY(0)' : 'translateY(8px)';
+          scrollBtn.style.pointerEvents = show ? 'auto' : 'none';
+        }, { passive: true });
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        scrollBtn.addEventListener('mouseenter', () => {
+          scrollBtn.style.background = 'var(--accent)';
+          scrollBtn.style.color = 'white';
+          scrollBtn.style.borderColor = 'var(--accent)';
+        });
+        scrollBtn.addEventListener('mouseleave', () => {
+          scrollBtn.style.background = 'var(--accent-bg)';
+          scrollBtn.style.color = 'var(--accent)';
+          scrollBtn.style.borderColor = 'var(--accent-border)';
+        });
+      }
 
       // Custom cursor
       const dot  = document.getElementById('cursor-dot');
