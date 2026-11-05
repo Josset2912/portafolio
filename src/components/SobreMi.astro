@@ -56,7 +56,7 @@ const mainTechs = [
         </div>
 
         <!-- Languages -->
-        <div class="mt-6 flex flex-col gap-2">
+        {perfil.idiomas.length > 0 && <div class="mt-6 flex flex-col gap-2">
           {perfil.idiomas.map((l) => (
             <div class="flex items-center justify-between">
               <span class="text-sm" style="color: var(--muted); font-family: var(--font-body);">{l.idioma}</span>
@@ -68,7 +68,7 @@ const mainTechs = [
               </span>
             </div>
           ))}
-        </div>
+        </div>}
       </div>
 
       <!-- Right col -->

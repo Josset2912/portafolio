@@ -203,7 +203,7 @@ export const perfil = {
     { entidad: "Ing. Consultores", nombre: "Ofimática Profesional" },
   ],
   idiomas: [
-    /* { idioma: "Español", nivel: "Nativo" },
-    { idioma: "Inglés", nivel: "Intermedio" }, */
+    { idioma: "Español", nivel: "Nativo" },
+    { idioma: "Inglés", nivel: "Intermedio" },
   ],
 };
