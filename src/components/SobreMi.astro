@@ -2,6 +2,13 @@
 import { perfil } from "../data/perfil";
 import TechIcon from "./TechIcon.astro";
 
+const expStart = new Date("2025-02-01");
+const now = new Date();
+const months = (now.getFullYear() - expStart.getFullYear()) * 12 + now.getMonth() - expStart.getMonth();
+const expYears = Math.floor(months / 12);
+const expText = expYears >= 1 ? `${expYears}+` : "<1";
+const expLabel = expYears === 1 ? "año de experiencia" : "años de experiencia";
+
 const mainTechs = [
   { name: "React",        tag: "Frontend"  },
   { name: "TypeScript",   tag: "Lenguaje"  },
@@ -34,11 +41,11 @@ const mainTechs = [
             <span class="stat-label">contribuciones GitHub</span>
           </div>
           <div class="stat-card">
-            <span class="stat-num">1+</span>
-            <span class="stat-label">año de experiencia</span>
+            <span class="stat-num">{expText}</span>
+            <span class="stat-label">{expLabel}</span>
           </div>
           <div class="stat-card">
-            <span class="stat-num">3</span>
+            <span class="stat-num">{perfil.proyectos.length}</span>
             <span class="stat-label">proyectos publicados</span>
           </div>
           <div class="stat-card">
