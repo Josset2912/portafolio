@@ -1,10 +1,10 @@
 ---
 const links = [
-  { href: "#sobre-mi",    label: "Sobre mí" },
-  { href: "#experiencia", label: "Experiencia" },
-  { href: "#stack",       label: "Stack" },
-  { href: "#proyectos",   label: "Proyectos" },
-  { href: "#contacto",    label: "Contacto" },
+  { href: "#sobre-mi",    label: "Sobre mí",    en: "About" },
+  { href: "#experiencia", label: "Experiencia",  en: "Experience" },
+  { href: "#stack",       label: "Stack",         en: "Stack" },
+  { href: "#proyectos",   label: "Proyectos",     en: "Projects" },
+  { href: "#contacto",    label: "Contacto",      en: "Contact" },
 ];
 ---
 
@@ -20,13 +20,21 @@ const links = [
     <ul class="nav-links" role="list">
       {links.map((link) => (
         <li>
-          <a href={link.href} class="nav-link">{link.label}</a>
+          <a href={link.href} class="nav-link" data-i18n-en={link.en}>{link.label}</a>
         </li>
       ))}
     </ul>
 
-    <!-- Right: theme toggle + CTA -->
+    <!-- Right: lang toggle + theme toggle + CTA -->
     <div class="nav-actions">
+      <button
+        id="lang-toggle"
+        aria-label="Switch language"
+        class="theme-btn lang-btn"
+        onclick="window.__toggleLang && window.__toggleLang()"
+      >
+        <span id="lang-label" style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;">ES</span>
+      </button>
       <button id="theme-toggle" aria-label="Cambiar tema" class="theme-btn">
         <!-- Sun icon (dark mode) -->
         <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -54,8 +62,16 @@ const links = [
       </a>
     </div>
 
-    <!-- Mobile: theme toggle + hamburger -->
+    <!-- Mobile: lang toggle + theme toggle + hamburger -->
     <div class="nav-mobile-controls">
+      <button
+        id="lang-toggle-mobile"
+        aria-label="Switch language"
+        class="theme-btn lang-btn"
+        onclick="window.__toggleLang && window.__toggleLang()"
+      >
+        <span id="lang-label-mobile" style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;">ES</span>
+      </button>
       <button id="theme-toggle-mobile" aria-label="Cambiar tema" class="theme-btn">
         <svg id="icon-sun-mobile" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="5"/>
@@ -88,7 +104,7 @@ const links = [
     <ul class="mobile-links" role="list">
       {links.map((link) => (
         <li>
-          <a href={link.href} class="mobile-link" onclick="closeMenu()">{link.label}</a>
+          <a href={link.href} class="mobile-link" onclick="closeMenu()" data-i18n-en={link.en}>{link.label}</a>
         </li>
       ))}
     </ul>

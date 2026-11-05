@@ -92,6 +92,48 @@ const {
         <polyline points="5 12 12 5 19 12"/>
       </svg>
     </button>
+    <!-- i18n: swap text content for EN/ES -->
+    <script>
+      (function () {
+        var lang = 'es';
+        try { lang = localStorage.getItem('lang') || 'es'; } catch (e) {}
+        window.__lang = lang;
+
+        function applyLang(l) {
+          window.__lang = l;
+          // Swap textContent
+          document.querySelectorAll('[data-i18n-en]').forEach(function (el) {
+            if (!el.dataset.i18nEs) el.dataset.i18nEs = el.textContent.trim();
+            el.textContent = l === 'en' ? el.dataset.i18nEn : (el.dataset.i18nEs || el.textContent);
+          });
+          // Swap placeholder attributes
+          document.querySelectorAll('[data-i18n-en-placeholder]').forEach(function (el) {
+            if (!el.dataset.i18nEsPlaceholder) el.dataset.i18nEsPlaceholder = el.placeholder;
+            el.placeholder = l === 'en' ? el.dataset.i18nEnPlaceholder : (el.dataset.i18nEsPlaceholder || el.placeholder);
+          });
+          // Update toggle label
+          var label = document.getElementById('lang-label');
+          var labelMob = document.getElementById('lang-label-mobile');
+          if (label)    label.textContent    = l === 'en' ? 'EN' : 'ES';
+          if (labelMob) labelMob.textContent = l === 'en' ? 'EN' : 'ES';
+          // Persist
+          try { localStorage.setItem('lang', l); } catch (e) {}
+        }
+
+        window.__applyLang  = applyLang;
+        window.__toggleLang = function () { applyLang(window.__lang === 'en' ? 'es' : 'en'); };
+
+        // Apply saved language after DOM is ready
+        if (lang === 'en') {
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function () { applyLang('en'); });
+          } else {
+            applyLang('en');
+          }
+        }
+      })();
+    </script>
+
     <script>
       // Reveal elements — with a fallback so hidden panes don't stay blank
       const revealAll = () => {

@@ -32,26 +32,26 @@ const mainTechs = [
 
       <!-- Left col -->
       <div class="md:col-span-4 reveal">
-        <span class="section-label">/ Sobre mí</span>
-        <h2 class="section-title">Desarrollo web y<br/>soluciones digitales</h2>
+        <span class="section-label" data-i18n-en="/ About me">/ Sobre mí</span>
+        <h2 class="section-title"><span data-i18n-en="Web development &">Desarrollo web y</span><br/><span data-i18n-en="digital solutions">soluciones digitales</span></h2>
 
         <!-- Stats grid -->
         <div class="mt-8 grid grid-cols-2 gap-3">
           <div class="stat-card">
             <span class="stat-num" data-target="483">0</span>
-            <span class="stat-label">contribuciones GitHub</span>
+            <span class="stat-label" data-i18n-en="GitHub contributions">contribuciones GitHub</span>
           </div>
           <div class="stat-card">
             <span class="stat-num" data-target={expYears >= 1 ? expYears : 0} data-suffix="+">0+</span>
-            <span class="stat-label">{expLabel}</span>
+            <span class="stat-label" data-i18n-en={expYears === 1 ? "year of experience" : "years of experience"}>{expLabel}</span>
           </div>
           <div class="stat-card">
             <span class="stat-num" data-target={projectsCount}>0</span>
-            <span class="stat-label">proyectos publicados</span>
+            <span class="stat-label" data-i18n-en="published projects">proyectos publicados</span>
           </div>
           <div class="stat-card">
             <span class="stat-num" data-target="15" data-suffix="+">0+</span>
-            <span class="stat-label">tecnologías</span>
+            <span class="stat-label" data-i18n-en="technologies">tecnologías</span>
           </div>
         </div>
 
@@ -91,26 +91,35 @@ const mainTechs = [
         <p
           class="text-base md:text-lg leading-relaxed mb-5 font-semibold"
           style="color: var(--text); font-family: var(--font-body);"
+          data-i18n-en="I transform your ideas into digital solutions that help businesses grow, improve their online presence, and optimize their workflows."
         >
           Transformo tus ideas en soluciones digitales que ayudan a negocios y empresas a
           crecer, mejorar su presencia en Internet y optimizar sus procesos de trabajo.
         </p>
-        <p class="text-base leading-relaxed mb-4" style="color: var(--muted);">
+        <p class="text-base leading-relaxed mb-4" style="color: var(--muted);"
+          data-i18n-en="I hold a Systems Engineering degree and am a web developer with over a year of experience in application development and maintenance, service integration, and business information management."
+        >
           Soy egresado de Ingeniería de Sistemas y desarrollador web con más de un año de
           experiencia en el desarrollo y mantenimiento de aplicaciones, integración de
           servicios y gestión de información empresarial.
         </p>
-        <p class="text-base leading-relaxed mb-4" style="color: var(--muted);">
+        <p class="text-base leading-relaxed mb-4" style="color: var(--muted);"
+          data-i18n-en="I currently work at Agrícola Santa Azul S.R.L. as a Web Developer / IT Assistant, contributing to internal application development, databases, API services, and technical support."
+        >
           Actualmente trabajo en Agrícola Santa Azul S.R.L. como Programador Web / Auxiliar
           de TI, donde participo en el desarrollo de aplicaciones internas, bases de datos,
           servicios API y soporte tecnológico.
         </p>
-        <p class="text-base leading-relaxed mb-4" style="color: var(--muted);">
+        <p class="text-base leading-relaxed mb-4" style="color: var(--muted);"
+          data-i18n-en="I focus on building modern, intuitive solutions that work across devices, combining Front-End development, service integration, and database technologies."
+        >
           Me enfoco en crear soluciones modernas, intuitivas y adaptables a diferentes
           dispositivos, combinando desarrollo Front-End, integración de servicios y
           tecnologías de bases de datos.
         </p>
-        <p class="text-base leading-relaxed mb-10" style="color: var(--muted);">
+        <p class="text-base leading-relaxed mb-10" style="color: var(--muted);"
+          data-i18n-en="I work with entrepreneurs, small businesses, and companies looking to digitize their operations, showcase their services online, or build custom tools."
+        >
           Trabajo con emprendedores, pequeños negocios y empresas que buscan digitalizar
           sus operaciones, presentar sus servicios en Internet o desarrollar herramientas
           personalizadas.
@@ -119,7 +128,7 @@ const mainTechs = [
         <!-- Main techs -->
         <div>
           <div class="flex items-center gap-3 mb-5">
-            <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted-2);">
+            <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted-2);" data-i18n-en="Main technologies">
               Tecnologías principales
             </span>
             <div style="flex: 1; height: 1px; background: var(--border);" />

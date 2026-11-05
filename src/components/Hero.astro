@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import fotoJP from "../assets/images/foto.jpg";
 
 const roles = ["Programador Web", "Desarrollador Full-Stack", "Ingeniero de Sistemas", "Data Analyst"];
+const descEN = "Web development and digital solutions for businesses. I build websites and applications that help companies improve their digital presence, optimize processes, and manage their information. I develop modern interfaces with React and Astro, integrate REST APIs, and work with databases to build functional, tailored solutions.";
 ---
 
 <section
@@ -51,7 +52,7 @@ const roles = ["Programador Web", "Desarrollador Full-Stack", "Ingeniero de Sist
         <div class="mb-3 reveal">
           <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.75rem; background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 20px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--green);">
             <span style="width: 5px; height: 5px; border-radius: 50%; background: var(--green); display: inline-block; box-shadow: 0 0 6px var(--green); animation: pulse-avail 2s ease-in-out infinite;"></span>
-            Disponible · trabajo remoto
+            <span data-i18n-en="Available · remote work">Disponible · trabajo remoto</span>
           </span>
         </div>
 
@@ -62,7 +63,7 @@ const roles = ["Programador Web", "Desarrollador Full-Stack", "Ingeniero de Sist
             style="font-family: var(--font-mono); color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 20px;"
           >
             <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;box-shadow: 0 0 6px var(--green);flex-shrink:0;"></span>
-            {perfil.titulo}<span class="hidden sm:inline"> · <span id="typewriter-text">{perfil.subtitulo}</span><span class="cursor-blink">|</span></span>
+            <span data-i18n-en="Front-End Developer">{perfil.titulo}</span><span class="hidden sm:inline"> · <span id="typewriter-text">{perfil.subtitulo}</span><span class="cursor-blink">|</span></span>
           </span>
         </div>
 
@@ -79,6 +80,7 @@ const roles = ["Programador Web", "Desarrollador Full-Stack", "Ingeniero de Sist
         <p
           class="text-base md:text-lg leading-relaxed mb-10 reveal reveal-delay-2"
           style="color: var(--muted); max-width: 52ch;"
+          data-i18n-en={descEN}
         >
           {perfil.descripcion}
         </p>
@@ -95,7 +97,7 @@ const roles = ["Programador Web", "Desarrollador Full-Stack", "Ingeniero de Sist
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
-            Contáctame
+            <span data-i18n-en="Contact me">Contáctame</span>
           </a>
 
           <!-- CV Download -->
@@ -112,7 +114,7 @@ const roles = ["Programador Web", "Desarrollador Full-Stack", "Ingeniero de Sist
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Descargar CV
+            <span data-i18n-en="Download CV">Descargar CV</span>
           </a>
 
           <a

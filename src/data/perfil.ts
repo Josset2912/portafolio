@@ -18,6 +18,8 @@ export const perfil = {
       sector: "Agroindustrial",
       descripcion:
         "Participación en el desarrollo, mantenimiento y soporte de soluciones tecnológicas para los procesos internos de una empresa del sector agroindustrial.",
+      descripcion_en:
+        "Development, maintenance, and support of technology solutions for the internal processes of an agroindustrial company.",
       logros: [
         "Desarrollo y mantenimiento de aplicaciones web internas.",
         "Integración de servicios mediante APIs REST.",
@@ -44,6 +46,8 @@ export const perfil = {
       sector: "Tecnológico",
       descripcion:
         "Participación en actividades de análisis de datos y desarrollo de soluciones basadas en aprendizaje automático, además de automatización de reportes.",
+      descripcion_en:
+        "Data analysis and development of machine learning solutions, plus automated reporting.",
       logros: [
         "Desarrollo de modelos de aprendizaje automático utilizando Python y TensorFlow.",
         "Preparación y análisis de información.",
@@ -59,6 +63,8 @@ export const perfil = {
       sector: "Educativo",
       descripcion:
         "Soporte tecnológico a estudiantes y docentes, documentación de procesos y asistencia en el uso de herramientas informáticas.",
+      descripcion_en:
+        "Technical support for students and faculty, process documentation, and IT tool assistance.",
       logros: [
         "Atención de incidencias técnicas.",
         "Elaboración de manuales y documentación.",
@@ -80,6 +86,8 @@ export const perfil = {
       sector: "Educativo",
       descripcion:
         "Participación en actividades de digitalización de documentos académicos y administrativos.",
+      descripcion_en:
+        "Digitization of academic and administrative documents.",
       logros: [
         "Digitalización y organización de documentos.",
         "Apoyo en la gestión de información documental.",
@@ -118,6 +126,8 @@ export const perfil = {
       nombre: "Blanco Dental",
       descripcion:
         "Sistema web completo para gestión de clínica dental. Administra pacientes, citas, tratamientos, pagos y genera reportes con estadísticas mensuales. Incluye odontograma interactivo, imágenes en Cloudinary y roles con autenticación JWT.",
+      descripcion_en:
+        "Full-stack web system for dental clinic management. Manages patients, appointments, treatments, payments, and generates monthly stats reports. Includes an interactive odontogram, Cloudinary image storage, and JWT role-based authentication.",
       stack: [
         "React 19",
         "TypeScript",
@@ -138,6 +148,8 @@ export const perfil = {
       nombre: "NutriKids",
       descripcion:
         "Plataforma educativa para la prevención de la anemia infantil. Visualiza recetas nutritivas ricas en hierro organizadas por rango de edad, orientada a padres y cuidadores.",
+      descripcion_en:
+        "Educational platform for the prevention of childhood anemia. Displays iron-rich nutritious recipes organized by age range, targeted at parents and caregivers.",
       stack: ["Astro", "TypeScript", "CSS"],
       github: "https://github.com/Josset2912/anemia-information",
       demo: "https://lucha-contra-la-anemia.netlify.app",
@@ -148,6 +160,8 @@ export const perfil = {
       nombre: "PackingWeb",
       descripcion:
         "Sitio web oficial desarrollado para empresa de embalaje y packaging. Proyecto colaborativo con foco en presentación de servicios y experiencia de usuario.",
+      descripcion_en:
+        "Official website built for a packaging company. A collaborative project focused on service presentation and user experience.",
       stack: ["JavaScript", "HTML", "CSS"],
       github: "https://github.com/Josset2912/PackingWebOfficial",
       demo: null,
@@ -158,6 +172,8 @@ export const perfil = {
       nombre: "Consientete",
       descripcion:
         "Landing page para centro de belleza y cosmetica en Huacho. Presenta servicios de unas, maquillaje y tratamientos con diseno elegante, animaciones y seccion de contacto.",
+      descripcion_en:
+        "Landing page for a beauty and cosmetics center in Huacho. Showcases nail, makeup, and treatment services with elegant design, animations, and a contact section.",
       stack: ["Astro", "TypeScript", "Tailwind CSS"],
       github: "https://github.com/Josset2912/cosmetico-u-as",
       demo: "https://consientete.netlify.app",
@@ -168,6 +184,8 @@ export const perfil = {
       nombre: "Buscador de IP",
       descripcion:
         "Aplicacion web que permite buscar informacion de cualquier direccion IP — ubicacion, pais, ciudad, ISP y coordenadas — consumiendo una API de geolocalización con interfaz limpia y responsive.",
+      descripcion_en:
+        "Web app to look up any IP address — location, country, city, ISP, and coordinates — using a geolocation API with a clean, responsive interface.",
       stack: ["JavaScript", "HTML", "CSS"],
       github: "https://github.com/Josset2912/BuscadorIp",
       demo: "https://buscador-ip-2024.netlify.app",
@@ -178,6 +196,8 @@ export const perfil = {
       nombre: "Pokedex",
       descripcion:
         "Aplicacion web que consume la PokeAPI para visualizar, buscar y explorar informacion de Pokemon — nombre, tipo, imagen y estadisticas — con filtrado por tipo y diseno responsive.",
+      descripcion_en:
+        "Web app consuming the PokéAPI to browse, search, and explore Pokémon — name, type, image, and stats — with type filtering and a responsive design.",
       stack: ["JavaScript", "HTML", "CSS", "PokeAPI"],
       github: "https://github.com/Josset2912/Pokedex",
       demo: "https://pokedex-2024-1.netlify.app",

@@ -13,9 +13,11 @@ import TechIcon from "./TechIcon.astro";
 
       <!-- Left col: label + title -->
       <div class="md:col-span-4 reveal">
-        <span class="section-label">/ Trayectoria</span>
-        <h2 class="section-title">Experiencia laboral</h2>
-        <p class="mt-4 text-sm leading-relaxed" style="color: var(--muted);">
+        <span class="section-label" data-i18n-en="/ Career">/ Trayectoria</span>
+        <h2 class="section-title" data-i18n-en="Work experience">Experiencia laboral</h2>
+        <p class="mt-4 text-sm leading-relaxed" style="color: var(--muted);"
+          data-i18n-en={`${perfil.experiencia.length} positions at technology, education, and agroindustrial companies.`}
+        >
           {perfil.experiencia.length} posiciones en empresas de tecnología, educación y agroindustria.
         </p>
       </div>
@@ -76,7 +78,9 @@ import TechIcon from "./TechIcon.astro";
                   </div>
 
                   <!-- Description -->
-                  <p class="text-sm leading-relaxed mb-3" style="color: var(--muted);">
+                  <p class="text-sm leading-relaxed mb-3" style="color: var(--muted);"
+                    data-i18n-en={exp.descripcion_en || exp.descripcion}
+                  >
                     {exp.descripcion}
                   </p>
 
@@ -115,7 +119,7 @@ import TechIcon from "./TechIcon.astro";
       <!-- Education -->
       <div class="md:col-span-4 reveal">
         <div class="flex items-center gap-3 mb-4">
-          <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted-2);">Educación</span>
+          <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted-2);" data-i18n-en="Education">Educación</span>
           <div style="flex: 1; height: 1px; background: var(--border);"></div>
         </div>
         <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;">
@@ -132,7 +136,7 @@ import TechIcon from "./TechIcon.astro";
       <!-- Certifications -->
       <div class="md:col-span-8 reveal reveal-delay-1">
         <div class="flex items-center gap-3 mb-4">
-          <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted-2);">Certificaciones</span>
+          <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted-2);" data-i18n-en="Certifications">Certificaciones</span>
           <div style="flex: 1; height: 1px; background: var(--border);"></div>
         </div>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
