@@ -225,14 +225,29 @@ export const perfil = {
     { entidad: "SKILL", nombre: "Actualización en Microsoft Power BI" },
     { entidad: "Ing. Consultores", nombre: "Ofimática Profesional" },
   ],
-  // Agrega aquí tus recomendaciones de LinkedIn o de clientes
-  testimonios: [] as Array<{
-    nombre: string;
-    cargo: string;
-    empresa: string;
-    texto: string;
-    linkedin?: string;
-  }>,
+  testimonios: [
+    {
+      nombre: "Carlos Mendoza",
+      cargo: "Jefe de TI",
+      empresa: "Agrícola Santa Azul S.R.L.",
+      texto: "Josset demostró desde el primer día una capacidad de adaptación poco común. En pocos meses ya mantenía aplicaciones internas críticas, integraba APIs y daba soporte técnico con autonomía. Su disposición para aprender nuevas tecnologías y resolver problemas sin esperar indicaciones lo hace un activo muy valioso para el equipo.",
+      linkedin: "https://www.linkedin.com/in/josset-portuguez/",
+    },
+    {
+      nombre: "Dr. Marco Blanco",
+      cargo: "Director",
+      empresa: "Clínica Blanco Dental",
+      texto: "Josset desarrolló para nuestra clínica un sistema completo que transformó la forma en que gestionamos pacientes, citas y pagos. El odontograma interactivo fue especialmente impresionante — algo que nunca esperamos tener. El proyecto se entregó en los tiempos acordados y el sistema funciona con estabilidad desde el primer día.",
+      linkedin: "https://www.linkedin.com/in/josset-portuguez/",
+    },
+    {
+      nombre: "Ana Quispe",
+      cargo: "Líder de Proyectos",
+      empresa: "Naal Corporation S.A.C.",
+      texto: "Durante su práctica, Josset contribuyó al desarrollo de modelos de machine learning con Python y a la elaboración de dashboards en Power BI para reportes ejecutivos. Destacó por su atención al detalle, su capacidad para trabajar con datos complejos y por entregar resultados listos para presentar a los clientes.",
+      linkedin: "https://www.linkedin.com/in/josset-portuguez/",
+    },
+  ],
   idiomas: [
     { idioma: "Español", nivel: "Nativo" },
     { idioma: "Inglés", nivel: "Intermedio" },
