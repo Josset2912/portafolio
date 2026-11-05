@@ -22,95 +22,88 @@ import TechIcon from "./TechIcon.astro";
 
       <!-- Right col: timeline -->
       <div class="md:col-span-8">
-        <div class="relative">
+        <div class="relative timeline-entries">
+
+          <!-- Línea única animada que crece con el scroll -->
+          <div class="timeline-line" aria-hidden="true"></div>
 
           {
-            perfil.experiencia.map((exp, i) => {
-              const isLast = i === perfil.experiencia.length - 1;
-              return (
+            perfil.experiencia.map((exp, i) => (
+              <div
+                class={`relative pl-10 reveal reveal-delay-${Math.min(i + 1, 4)}`}
+                style={i < perfil.experiencia.length - 1 ? "padding-bottom: 3rem;" : ""}
+              >
+                <!-- Dot -->
                 <div
-                  class={`relative pl-10 reveal reveal-delay-${Math.min(i + 1, 4)}`}
-                  style={!isLast ? "padding-bottom: 3rem;" : ""}
+                  class={`timeline-dot timeline-dot-${i} absolute flex items-center justify-center`}
+                  style="left: 0; top: 4px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border-2); background: var(--surface-2); z-index: 1;"
                 >
-                  <!-- Vertical line (not on last entry) -->
-                  {!isLast && (
-                    <div
-                      class="absolute"
-                      style="left: 9px; top: 22px; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent-border) 0%, var(--border) 100%);"
-                    />
-                  )}
-
-                  <!-- Dot -->
                   <div
-                    class="absolute flex items-center justify-center"
-                    style="left: 0; top: 4px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface-2); z-index: 1;"
-                  >
-                    <div
-                      style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent);"
-                    />
+                    class="timeline-dot-inner"
+                    style="width: 7px; height: 7px; border-radius: 50%; background: var(--border-2);"
+                  />
+                </div>
+
+                <!-- Content -->
+                <div>
+                  <!-- Header -->
+                  <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1 mb-2">
+                    <div>
+                      <h3
+                        style="font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--text); letter-spacing: -0.02em; line-height: 1.2;"
+                      >
+                        {exp.empresa}
+                      </h3>
+                      <p class="text-sm mt-0.5" style="color: var(--accent); font-weight: 500;">
+                        {exp.rol}
+                      </p>
+                    </div>
+
+                    <div class="flex flex-col items-end gap-1 shrink-0">
+                      <span
+                        class="text-xs"
+                        style="font-family: var(--font-mono); color: var(--muted-2);"
+                      >
+                        {exp.periodo}
+                      </span>
+                      <span
+                        class="text-xs px-2 py-0.5"
+                        style="color: var(--muted-2); border: 1px solid var(--border); border-radius: 4px; font-family: var(--font-mono); background: var(--surface);"
+                      >
+                        {exp.sector}
+                      </span>
+                    </div>
                   </div>
 
-                  <!-- Content -->
-                  <div>
-                    <!-- Header -->
-                    <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1 mb-2">
-                      <div>
-                        <h3
-                          style="font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--text); letter-spacing: -0.02em; line-height: 1.2;"
-                        >
-                          {exp.empresa}
-                        </h3>
-                        <p class="text-sm mt-0.5" style="color: var(--accent); font-weight: 500;">
-                          {exp.rol}
-                        </p>
-                      </div>
+                  <!-- Description -->
+                  <p class="text-sm leading-relaxed mb-3" style="color: var(--muted);">
+                    {exp.descripcion}
+                  </p>
 
-                      <div class="flex flex-col items-end gap-1 shrink-0">
+                  <!-- Achievements -->
+                  <ul class="flex flex-col gap-1.5 mb-4">
+                    {exp.logros.map((logro) => (
+                      <li class="flex gap-2.5 text-sm" style="color: var(--muted);">
                         <span
-                          class="text-xs"
-                          style="font-family: var(--font-mono); color: var(--muted-2);"
-                        >
-                          {exp.periodo}
-                        </span>
-                        <span
-                          class="text-xs px-2 py-0.5"
-                          style="color: var(--muted-2); border: 1px solid var(--border); border-radius: 4px; font-family: var(--font-mono); background: var(--surface);"
-                        >
-                          {exp.sector}
-                        </span>
-                      </div>
-                    </div>
+                          style="margin-top: 7px; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); display: block; flex-shrink: 0;"
+                        />
+                        <span>{logro}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                    <!-- Description -->
-                    <p class="text-sm leading-relaxed mb-3" style="color: var(--muted);">
-                      {exp.descripcion}
-                    </p>
-
-                    <!-- Achievements -->
-                    <ul class="flex flex-col gap-1.5 mb-4">
-                      {exp.logros.map((logro) => (
-                        <li class="flex gap-2.5 text-sm" style="color: var(--muted);">
-                          <span
-                            style="margin-top: 7px; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); display: block; flex-shrink: 0;"
-                          />
-                          <span>{logro}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <!-- Stack chips -->
-                    <div class="flex flex-wrap gap-2">
-                      {exp.stack.map((tech) => (
-                        <span class="chip">
-                          <TechIcon tech={tech} size={12} />
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                  <!-- Stack chips -->
+                  <div class="flex flex-wrap gap-2">
+                    {exp.stack.map((tech) => (
+                      <span class="chip">
+                        <TechIcon tech={tech} size={12} />
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              );
-            })
+              </div>
+            ))
           }
         </div>
       </div>
@@ -119,3 +112,76 @@ import TechIcon from "./TechIcon.astro";
 </section>
 
 <hr class="hr" />
+
+<style>
+  /* Línea vertical única animada */
+  .timeline-line {
+    position: absolute;
+    left: 9px;
+    top: 22px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      var(--accent) 0%,
+      var(--accent-border) 60%,
+      var(--border) 100%
+    );
+    transform: scaleY(0);
+    transform-origin: top center;
+    border-radius: 2px;
+    will-change: transform;
+  }
+
+  /* Dot: estado inicial (apagado) */
+  .timeline-dot {
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .timeline-dot-inner {
+    transition: background 0.4s ease;
+  }
+
+  /* Dot: estado activo (línea lo alcanzó) */
+  .timeline-dot.active {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 4px var(--accent-bg);
+  }
+  .timeline-dot.active .timeline-dot-inner {
+    background: var(--accent) !important;
+  }
+</style>
+
+<script>
+  function initTimeline() {
+    const entries = document.querySelector<HTMLElement>('.timeline-entries');
+    const line    = document.querySelector<HTMLElement>('.timeline-line');
+    if (!entries || !line) return;
+
+    const dots = document.querySelectorAll<HTMLElement>('.timeline-dot');
+
+    function update() {
+      const rect  = entries.getBoundingClientRect();
+      const viewH = window.innerHeight;
+
+      // Progreso: 0 cuando el tope entra al viewport, 1 cuando el final llega al centro
+      const progress = Math.max(0, Math.min(1,
+        (viewH * 0.8 - rect.top) / (rect.height - viewH * 0.1)
+      ));
+
+      line.style.transform = `scaleY(${progress})`;
+
+      // Activar puntos cuando la línea los alcanza
+      const lineBottom = rect.top + 22 + (rect.height - 32) * progress;
+      dots.forEach(dot => {
+        const dotRect = dot.getBoundingClientRect();
+        const dotCenterY = dotRect.top + dotRect.height / 2;
+        dot.classList.toggle('active', lineBottom >= dotCenterY);
+      });
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  initTimeline();
+</script>
