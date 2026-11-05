@@ -1,47 +1,129 @@
 ---
-import { stack } from "../data/perfil";
+import { perfil } from "../data/perfil";
+import TechIcon from "./TechIcon.astro";
+
+const allTechs = Object.entries(perfil.habilidades).flatMap(([cat, techs]) =>
+  techs.map((tech) => ({ tech, cat }))
+);
+
+const row1: { tech: string; cat: string }[] = [];
+const row2: { tech: string; cat: string }[] = [];
+allTechs.forEach((item, i) => {
+  if (i % 2 === 0) row1.push(item);
+  else row2.push(item);
+});
 ---
 
-<section id="stack" class="wrap py-20" style="border-top: 1px solid var(--border)">
-  <div class="mb-12">
-    <p class="section-title m-0">Stack técnico</p>
-    <p class="muted mt-3 max-w-2xl text-base">Herramientas de cada disciplina que domino</p>
+<section id="stack" style="background: var(--surface); overflow: hidden;">
+
+  <!-- Header -->
+  <div class="max-w-6xl mx-auto px-6 md:px-12 pt-20 pb-14 reveal">
+    <div class="grid md:grid-cols-12 gap-8 items-end">
+      <div class="md:col-span-5">
+        <span class="section-label">/ Tecnologías</span>
+        <h2 class="section-title">Stack técnico</h2>
+      </div>
+      <div class="md:col-span-7">
+        <p class="text-sm leading-relaxed" style="color: var(--muted); max-width: 44ch;">
+          Herramientas que uso en proyectos reales, desde interfaces web hasta análisis de datos y sistemas en producción.
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-max">
-    {
-      stack.map((grupo, idx) => {
-        const sizes = [
-          "lg:col-span-1 lg:row-span-1",
-          "lg:col-span-1 lg:row-span-1",
-          "lg:col-span-1 lg:row-span-1",
-          "lg:col-span-1 lg:row-span-1",
-          "lg:col-span-1 lg:row-span-1",
-          "lg:col-span-1 lg:row-span-1",
-        ];
-        return (
-          <div
-            class={`group card p-6 transition-all duration-400 hover:-translate-y-1 hover:shadow-lg cursor-default ${sizes[idx] || ""}`}
-            style="border: 1px solid var(--border); position: relative; overflow: hidden;"
-            data-animate="scale-in"
-          >
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-              style="background: linear-gradient(135deg, var(--accent-soft) 0%, transparent 100%);">
-            </div>
+  <!-- Marquee stage -->
+  <div
+    class="reveal reveal-delay-1"
+    style="
+      padding-bottom: 5rem;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    "
+  >
 
-            <div class="relative z-10">
-              <p class="m-0 text-xs font-bold uppercase tracking-wider" style="color: var(--accent); margin-bottom: 0.75rem;">
-                {grupo.grupo}
-              </p>
-              <ul class="flex flex-wrap gap-2 list-none m-0 p-0">
-                {grupo.items.map((item) => (
-                  <li class="chip text-xs font-mono" style="border-color: var(--border);">{item}</li>
-                ))}
-              </ul>
-            </div>
+    <!-- Row 1 → scrolls right -->
+    <div
+      style="overflow: hidden; margin-bottom: 10px;"
+      onmouseenter="this.querySelector('.track').style.animationPlayState='paused'"
+      onmouseleave="this.querySelector('.track').style.animationPlayState='running'"
+    >
+      <div
+        class="track"
+        style="
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          gap: 10px;
+          width: max-content;
+          animation: marquee-left 40s linear infinite;
+        "
+      >
+        {[...row1, ...row1].map(({ tech, cat }) => (
+          <div style="
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            white-space: nowrap;
+            flex-shrink: 0;
+            cursor: default;
+            transition: border-color 0.2s, background 0.2s;
+          ">
+            <TechIcon tech={tech} size={18} />
+            <span style="font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; color: var(--text);">{tech}</span>
+           {/*  <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted-2); padding: 2px 6px; background: var(--surface); border-radius: 4px; border: 1px solid var(--border);">{cat}</span> */}
           </div>
-        );
-      })
-    }
+        ))}
+      </div>
+    </div>
+
+    <!-- Row 2 ← scrolls left (reverse) -->
+    <div
+      style="overflow: hidden;"
+      onmouseenter="this.querySelector('.track').style.animationPlayState='paused'"
+      onmouseleave="this.querySelector('.track').style.animationPlayState='running'"
+    >
+      <div
+        class="track"
+        style="
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          gap: 10px;
+          width: max-content;
+          animation: marquee-left 40s linear infinite reverse;
+        "
+      >
+        {[...row2, ...row2].map(({ tech, cat }) => (
+          <div style="
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            white-space: nowrap;
+            flex-shrink: 0;
+            cursor: default;
+            transition: border-color 0.2s, background 0.2s;
+          ">
+            <TechIcon tech={tech} size={18} />
+            <span style="font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; color: var(--text);">{tech}</span>
+           {/*  <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted-2); padding: 2px 6px; background: var(--surface); border-radius: 4px; border: 1px solid var(--border);">{cat}</span> */}
+          </div>
+        ))}
+      </div>
+    </div>
+
   </div>
+
 </section>
+
+<hr class="hr" />
+

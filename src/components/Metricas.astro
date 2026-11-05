@@ -1,0 +1,32 @@
+---
+import { perfil } from "../data/perfil";
+---
+
+<section
+  class="px-6 md:px-12 py-16"
+  style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);"
+>
+  <div class="max-w-6xl mx-auto">
+    <p
+      class="mb-10 text-xs"
+      style="font-family: var(--font-mono); color: var(--muted-2); letter-spacing: 0.1em;"
+    >
+      / Resultados medibles
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      {
+        perfil.metricas.map((m, i) => (
+          <div
+            class={`p-5 reveal reveal-delay-${i + 1}`}
+            style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;"
+          >
+            <div class="metric-num mb-2">{m.valor}</div>
+            <p class="text-sm font-semibold mb-1" style="color: var(--text);">{m.label}</p>
+            <p class="text-xs leading-snug" style="color: var(--muted-2); font-family: var(--font-mono);">{m.detalle}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

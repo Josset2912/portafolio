@@ -1,16 +1,230 @@
 ---
-import { sobreMi } from "../data/perfil";
+import { perfil } from "../data/perfil";
+import TechIcon from "./TechIcon.astro";
+
+const mainTechs = [
+  { name: "React",        tag: "Frontend"  },
+  { name: "TypeScript",   tag: "Lenguaje"  },
+  { name: "Astro",        tag: "Frontend"  },
+  { name: "Tailwind CSS", tag: "Estilos"   },
+  { name: "Node.js",      tag: "Backend"   },
+  { name: "Python",       tag: "Data / ML" },
+  { name: "PostgreSQL",   tag: "DB"        },
+  { name: "Power BI",     tag: "Analytics" },
+];
 ---
 
-<section id="sobre-mi" class="wrap py-16" style="border-top: 1px solid var(--border)">
-  <p class="section-title m-0">Sobre mí</p>
-  <div class="mt-6 grid gap-5 md:grid-cols-3">
-    {
-      sobreMi.map((parrafo) => (
-        <p class="m-0 leading-relaxed" style="color: var(--text-soft)">
-          {parrafo}
+<section
+  id="sobre-mi"
+  class="px-6 md:px-12 py-20"
+  style="background: var(--bg);"
+>
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-12 gap-12 md:gap-16 items-start">
+
+      <!-- Left col -->
+      <div class="md:col-span-4 reveal">
+        <span class="section-label">/ Sobre mí</span>
+        <h2 class="section-title">Desarrollo web y<br/>soluciones digitales</h2>
+
+        <!-- Stats grid -->
+        <div class="mt-8 grid grid-cols-2 gap-3">
+          <div class="stat-card">
+            <span class="stat-num">483</span>
+            <span class="stat-label">contribuciones GitHub</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">1+</span>
+            <span class="stat-label">año de experiencia</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">3</span>
+            <span class="stat-label">proyectos publicados</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">15+</span>
+            <span class="stat-label">tecnologías</span>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="mt-6 flex flex-col gap-2">
+          {perfil.idiomas.map((l) => (
+            <div class="flex items-center justify-between">
+              <span class="text-sm" style="color: var(--muted); font-family: var(--font-body);">{l.idioma}</span>
+              <span
+                class="text-xs px-2 py-0.5"
+                style="font-family: var(--font-mono); color: var(--accent); border: 1px solid var(--accent-border); border-radius: 4px; background: var(--accent-bg);"
+              >
+                {l.nivel}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right col -->
+      <div class="md:col-span-8 reveal reveal-delay-1">
+
+        <!-- Bio -->
+        <p
+          class="text-base md:text-lg leading-relaxed mb-5 font-semibold"
+          style="color: var(--text); font-family: var(--font-body);"
+        >
+          Transformo tus ideas en soluciones digitales que ayudan a negocios y empresas a
+          crecer, mejorar su presencia en Internet y optimizar sus procesos de trabajo.
         </p>
-      ))
-    }
+        <p class="text-base leading-relaxed mb-4" style="color: var(--muted);">
+          Soy egresado de Ingeniería de Sistemas y desarrollador web con más de un año de
+          experiencia en el desarrollo y mantenimiento de aplicaciones, integración de
+          servicios y gestión de información empresarial.
+        </p>
+        <p class="text-base leading-relaxed mb-4" style="color: var(--muted);">
+          Actualmente trabajo en Agrícola Santa Azul S.R.L. como Programador Web / Auxiliar
+          de TI, donde participo en el desarrollo de aplicaciones internas, bases de datos,
+          servicios API y soporte tecnológico.
+        </p>
+        <p class="text-base leading-relaxed mb-4" style="color: var(--muted);">
+          Me enfoco en crear soluciones modernas, intuitivas y adaptables a diferentes
+          dispositivos, combinando desarrollo Front-End, integración de servicios y
+          tecnologías de bases de datos.
+        </p>
+        <p class="text-base leading-relaxed mb-10" style="color: var(--muted);">
+          Trabajo con emprendedores, pequeños negocios y empresas que buscan digitalizar
+          sus operaciones, presentar sus servicios en Internet o desarrollar herramientas
+          personalizadas.
+        </p>
+
+        <!-- Main techs -->
+        <div>
+          <div class="flex items-center gap-3 mb-5">
+            <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted-2);">
+              Tecnologías principales
+            </span>
+            <div style="flex: 1; height: 1px; background: var(--border);" />
+          </div>
+
+          <div class="main-tech-grid">
+            {mainTechs.map((t) => (
+              <div class="main-tech-card">
+                <div class="main-tech-icon">
+                  <TechIcon tech={t.name} size={22} />
+                </div>
+                <div>
+                  <p class="main-tech-name">{t.name}</p>
+                  <p class="main-tech-tag">{t.tag}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </section>
+
+<hr class="hr" />
+
+<style>
+  /* GitHub stat card */
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1rem 1.25rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .stat-num {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    color: var(--muted-2);
+  }
+
+  /* Main tech grid */
+  .main-tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .main-tech-card {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border);
+    margin: -1px 0 0 -1px;
+    background: var(--surface-2);
+    transition: background 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+
+  .main-tech-card:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent-border);
+    z-index: 1;
+    position: relative;
+  }
+
+  /* Rounded outer corners */
+  .main-tech-card:nth-child(1)  { border-radius: 10px 0 0 0; }
+  .main-tech-card:nth-child(4)  { border-radius: 0 10px 0 0; }
+  .main-tech-card:nth-child(5)  { border-radius: 0 0 0 10px; }
+  .main-tech-card:nth-child(8)  { border-radius: 0 0 10px 0; }
+
+  .main-tech-icon {
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+
+  .main-tech-card:hover .main-tech-icon {
+    color: var(--accent);
+  }
+
+  .main-tech-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    line-height: 1.2;
+    transition: color 0.2s;
+  }
+
+  .main-tech-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--muted-2);
+    margin-top: 0.1rem;
+    transition: color 0.2s;
+  }
+
+  .main-tech-card:hover .main-tech-name {
+    color: var(--text);
+  }
+
+  .main-tech-card:hover .main-tech-tag {
+    color: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    .main-tech-grid { grid-template-columns: repeat(2, 1fr); }
+    .main-tech-card:nth-child(4)  { border-radius: 0; }
+    .main-tech-card:nth-child(5)  { border-radius: 0; }
+    .main-tech-card:nth-child(2n+1):nth-last-child(2),
+    .main-tech-card:nth-child(2n+1):nth-last-child(2) ~ .main-tech-card { border-radius: 0 0 0 10px; }
+    .main-tech-card:last-child { border-radius: 0 0 10px 0; }
+  }
+</style>

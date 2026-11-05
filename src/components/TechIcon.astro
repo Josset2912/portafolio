@@ -1,0 +1,82 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  tech: string;
+  size?: number;
+  class?: string;
+}
+
+const { tech, size = 16, class: className = "" } = Astro.props;
+
+// Mapeo de nombre visible → id de Simple Icons
+const iconMap: Record<string, string> = {
+  // Frontend
+  "React":          "simple-icons:react",
+  "React 19":       "simple-icons:react",
+  "Astro":          "simple-icons:astro",
+  "JavaScript":     "simple-icons:javascript",
+  "TypeScript":     "simple-icons:typescript",
+  "Tailwind CSS":   "simple-icons:tailwindcss",
+  "PHP":            "simple-icons:php",
+  "HTML":           "simple-icons:html5",
+  "HTML5":          "simple-icons:html5",
+  "CSS":            "simple-icons:css3",
+  "CSS3":           "simple-icons:css3",
+  "IIS":            "simple-icons:microsoft",
+  "Vite 8":         "simple-icons:vite",
+  "Flutter":        "simple-icons:flutter",
+  "Framer Motion":  "simple-icons:framer",
+
+  // Backend & DB
+  "Node.js":        "simple-icons:nodedotjs",
+  "Express":        "simple-icons:express",
+  "PostgreSQL":     "simple-icons:postgresql",
+  "Prisma":         "simple-icons:prisma",
+  "SQL Server":     "simple-icons:microsoftsqlserver",
+
+  // Data & ML
+  "Python":         "simple-icons:python",
+  "TensorFlow":     "simple-icons:tensorflow",
+  "Keras":          "simple-icons:keras",
+  "Power BI":       "simple-icons:powerbi",
+
+  // Herramientas
+  "Git":            "simple-icons:git",
+  "GitHub":         "simple-icons:github",
+  "Linux":          "simple-icons:linux",
+  "Postman":        "simple-icons:postman",
+  "Cloudinary":     "simple-icons:cloudinary",
+  "Raspberry Pi":   "simple-icons:raspberrypi",
+  "Vercel":         "simple-icons:vercel",
+  "Netlify":        "simple-icons:netlify",
+
+  // Plataformas
+  "Microsoft Office": "simple-icons:microsoftoffice",
+  "TeamViewer":        "simple-icons:teamviewer",
+  "Windows":           "simple-icons:windows",
+  "Windows Server":    "simple-icons:windows",
+  "Zoom":              "simple-icons:zoom",
+  "Google Workspace":  "simple-icons:google",
+
+  // Proyectos
+  "PokeAPI":        "simple-icons:javascript",
+  "TanStack Query": "simple-icons:reactquery",
+  "React Router v7": "simple-icons:reactrouter",
+  "jsPDF":          "simple-icons:javascript",
+  "XLSX":           "simple-icons:microsoftexcel",
+  "Recharts":       "simple-icons:javascript",
+};
+
+const iconId = iconMap[tech];
+---
+
+{iconId ? (
+  <Icon
+    name={iconId}
+    width={size}
+    height={size}
+    class={className}
+    aria-hidden="true"
+  />
+) : null}

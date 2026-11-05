@@ -1,87 +1,137 @@
 ---
 import "../styles/global.css";
-import { perfil } from "../data/perfil";
-import Nav from "../components/Nav.astro";
-import Footer from "../components/Footer.astro";
-import scrollAnimations from "../scripts/scrollAnimations.js";
+import "@fontsource-variable/gabarito";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
 
 interface Props {
-  titulo?: string;
-  descripcion?: string;
+  title?: string;
+  description?: string;
 }
 
 const {
-  titulo = `${perfil.nombre} — ${perfil.titulo}`,
-  descripcion = perfil.claim,
+  title = "Josset Yair Portuguéz Rea — Programador Web",
+  description = "Portafolio de Josset Yair Portuguéz Rea, Programador Web y estudiante de Ingeniería de Sistemas con experiencia en React, Astro y ciencia de datos.",
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" data-theme="dark">
+<html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{titulo}</title>
-    <meta name="description" content={descripcion} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-
-    <!-- Open Graph: cómo se ve el enlace al compartirlo en LinkedIn/WhatsApp -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={titulo} />
-    <meta property="og:description" content={descripcion} />
-    <meta property="og:locale" content="es_ES" />
-    <meta name="twitter:card" content="summary_large_image" />
-
+    <!-- Anti-flash: apply saved theme before paint -->
     <script is:inline>
-      // Aplica el tema guardado antes de pintar, para evitar el "flash" blanco.
-      try {
-        const guardado = localStorage.getItem("tema");
-        if (guardado) document.documentElement.dataset.theme = guardado;
-        else if (window.matchMedia("(prefers-color-scheme: light)").matches)
-          document.documentElement.dataset.theme = "light";
-      } catch (e) {}
+      (function() {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        } catch(e) {}
+      })();
     </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Josset Yair Portuguéz Rea" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:url" content="https://jossetportuguez.dev" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og-image.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
   </head>
   <body>
-    <a href="#contenido" class="sr-only focus:not-sr-only">Ir al contenido</a>
-    <Nav />
-    <main id="contenido">
-      <slot />
-    </main>
-    <Footer />
-
+    <!-- Custom cursor (desktop only) -->
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+    <slot />
     <script>
-      // Scroll animations using Intersection Observer
-      document.addEventListener('DOMContentLoaded', () => {
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
+      // Reveal elements — with a fallback so hidden panes don't stay blank
+      const revealAll = () => {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
+      };
 
-        const observer = new IntersectionObserver((entries) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const animType = entry.target.dataset.animate || 'fade-up';
-              entry.target.classList.add(`animate-${animType}`);
+              entry.target.classList.add("visible");
               observer.unobserve(entry.target);
             }
           });
-        }, observerOptions);
+        },
+        { threshold: 0, rootMargin: "0px 0px -40px 0px" }
+      );
 
-        // Observar elementos con data-animate
-        document.querySelectorAll('[data-animate]').forEach((el) => {
-          observer.observe(el);
-        });
+      const elements = document.querySelectorAll(".reveal");
+      elements.forEach((el) => observer.observe(el));
 
-        // También observar articles automáticamente
-        document.querySelectorAll('article').forEach((el) => {
-          if (!el.dataset.animate) {
-            el.dataset.animate = 'fade-up';
-            observer.observe(el);
-          }
+      // Fallback: if nothing has revealed after 1.5s (e.g. page not in viewport), show all
+      setTimeout(() => {
+        const hidden = document.querySelectorAll(".reveal:not(.visible)");
+        if (hidden.length === elements.length) revealAll();
+      }, 1500);
+
+      // Custom cursor
+      const dot  = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      const isMobile = window.matchMedia('(pointer: coarse)').matches;
+      if (!isMobile && dot && ring) {
+        document.addEventListener('mousemove', (e) => {
+          mx = e.clientX; my = e.clientY;
+          dot.style.transform = `translate(${mx}px, ${my}px)`;
         });
-      });
-    </script>
+        const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+        const animRing = () => {
+          rx = lerp(rx, mx, 0.12); ry = lerp(ry, my, 0.12);
+          ring.style.transform = `translate(${rx}px, ${ry}px)`;
+          requestAnimationFrame(animRing);
+        };
+        animRing();
+        // Scale ring on interactive elements
+        document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+          el.addEventListener('mouseenter', () => ring.classList.add('cursor-hover'));
+          el.addEventListener('mouseleave', () => ring.classList.remove('cursor-hover'));
+        });
+        document.body.style.cursor = 'none';
+      }
+
+</script>
   </body>
 </html>
+
+<style is:global>
+  /* Custom cursor */
+  #cursor-dot {
+    position: fixed;
+    top: -4px; left: -4px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+  }
+  #cursor-ring {
+    position: fixed;
+    top: -18px; left: -18px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-border);
+    pointer-events: none;
+    z-index: 9998;
+    will-change: transform;
+    transition: width 0.2s, height 0.2s, top 0.2s, left 0.2s, border-color 0.2s;
+  }
+  #cursor-ring.cursor-hover {
+    top: -24px; left: -24px;
+    width: 48px; height: 48px;
+    border-color: var(--accent);
+  }
+  @media (pointer: coarse) {
+    #cursor-dot, #cursor-ring { display: none; }
+  }
+
+</style>

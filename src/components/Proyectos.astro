@@ -1,63 +1,301 @@
 ---
-import { proyectos } from "../data/perfil";
+import { perfil } from "../data/perfil";
+import TechIcon from "./TechIcon.astro";
+import { Image } from "astro:assets";
+
+const imageGlob = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/proyectos/*.{jpg,jpeg,png,webp}",
+  { eager: true }
+);
+function getImg(filename: string): ImageMetadata | undefined {
+  return imageGlob[`/src/assets/images/proyectos/${filename}`]?.default;
+}
+
+const NAV_HEIGHT = 72;
+const CARD_PEEK  = 36;
 ---
 
-<section id="proyectos" class="wrap py-20" style="border-top: 1px solid var(--border)">
-  <div class="mb-12">
-    <p class="section-title m-0">Proyectos destacados</p>
-    <p class="muted mt-3 max-w-2xl text-base leading-relaxed">
-      Cada proyecto cuenta el problema, lo que construí y el resultado medible.
-    </p>
-  </div>
+<section
+  id="proyectos"
+  class="px-6 md:px-12 pt-20 pb-10"
+  style="background: var(--bg);"
+>
+  <div class="max-w-5xl mx-auto">
 
-  <div class="mt-12 grid gap-6 md:grid-cols-2">
-    {
-      proyectos.map((p, idx) => (
-        <article
-          class="group card flex flex-col p-8 transition-all duration-400 hover:-translate-y-2 hover:shadow-xl cursor-pointer"
-          style="border: 1px solid var(--border); position: relative; overflow: hidden;"
-          data-animate="fade-up"
-        >
-          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-            style="background: linear-gradient(135deg, var(--accent-soft) 0%, transparent 100%);">
-          </div>
+    <!-- Header -->
+    <div class="mb-14 reveal">
+      <span class="section-label">/ Proyectos</span>
+      <h2 class="section-title">Cosas que he construido</h2>
+      <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted); max-width: 44ch;">
+        Proyectos reales — desde sistemas de gestión clínica hasta plataformas educativas.
+      </p>
+    </div>
 
-          <div class="relative z-10">
-            <div class="flex items-start justify-between gap-3 mb-3">
-              <h3 class="m-0 text-xl font-bold leading-snug flex-1">{p.titulo}</h3>
-              {p.destacado && (
-                <span class="chip text-xs font-bold" style="color: var(--accent); border-color: var(--accent); white-space: nowrap;">
-                  ⭐ Destacado
-                </span>
-              )}
+    <!-- Mobile: compact list (hidden on sm+) -->
+    <div class="proj-mobile-list">
+      {perfil.proyectos.map((proyecto, i) => (
+        <div class="proj-row">
+          <span class="proj-row-num">{String(i + 1).padStart(2, "0")}</span>
+          <div class="proj-row-info">
+            <div class="proj-row-title">
+              {proyecto.nombre}
+              {proyecto.destacado && <span class="proj-row-badge">★</span>}
             </div>
-
-            <p class="muted text-base leading-relaxed mb-4">{p.resumen}</p>
-
-            <ul class="flex flex-wrap gap-2 list-none m-0 p-0 mb-6">
-              {p.stack.map((t) => (
-                <li class="chip text-xs font-mono" style="border-color: var(--accent); color: var(--accent);">{t}</li>
-              ))}
-            </ul>
-
-            <div class="flex flex-wrap items-center gap-5 text-sm font-medium">
-              <a href={`/proyectos/${p.slug}`} class="link-accent">
-                Ver caso →
+            <div class="proj-row-stack">{proyecto.stack.join(" · ")}</div>
+          </div>
+          <div class="proj-row-links">
+            {proyecto.demo && (
+              <a href={proyecto.demo} target="_blank" rel="noopener noreferrer" class="proj-icon-btn" aria-label={`Ver demo de ${proyecto.nombre}`}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
               </a>
-              {p.repo && (
-                <a href={p.repo} target="_blank" rel="noopener noreferrer" class="muted no-underline hover:text-[var(--accent)] transition-colors">
-                  Código
-                </a>
-              )}
-              {p.demo && (
-                <a href={p.demo} target="_blank" rel="noopener noreferrer" class="muted no-underline hover:text-[var(--accent)] transition-colors">
-                  Demo
-                </a>
+            )}
+            <a href={proyecto.github} target="_blank" rel="noopener noreferrer" class="proj-icon-btn" aria-label={`Ver GitHub de ${proyecto.nombre}`}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Desktop: sticky stack cards (hidden on mobile) -->
+    <div class="proj-desktop">
+      {perfil.proyectos.map((proyecto, i) => (
+        <div
+          class="proj-wrapper"
+          style={`position: sticky; top: ${NAV_HEIGHT + i * CARD_PEEK}px; z-index: ${i + 1};`}
+        >
+          <div style={`
+            background: var(--surface);
+            border: 1px solid ${proyecto.destacado ? "var(--accent-border)" : "var(--border)"};
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+          `}>
+            <!-- Inner grid: set to single column, JS will upgrade to 2 cols on sm+ -->
+            <div
+              class="proj-grid"
+              style="display: grid; grid-template-columns: 1fr; min-height: 320px;"
+            >
+              <!-- Left: content (order 2 so image goes first on mobile) -->
+              <div class="proj-content" style="padding: 2rem; display: flex; flex-direction: column; order: 2;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                  <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted-2); letter-spacing: 0.08em;">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {proyecto.destacado && (
+                    <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); border: 1px solid var(--accent-border); background: var(--accent-bg); border-radius: 4px; padding: 1px 6px;">
+                      destacado
+                    </span>
+                  )}
+                </div>
+
+                <h3 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.1; letter-spacing: -0.03em; color: var(--text); margin-bottom: 0.75rem;">
+                  {proyecto.nombre}
+                </h3>
+
+                <p style="font-size: 0.85rem; line-height: 1.65; color: var(--muted); margin-bottom: 1.25rem; flex-grow: 1;">
+                  {proyecto.descripcion}
+                </p>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+                  {proyecto.stack.map((tech) => (
+                    <span class="chip">
+                      <TechIcon tech={tech} size={12} />
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                  {proyecto.demo && (
+                    <a
+                      href={proyecto.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="proj-btn proj-btn--primary"
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                      Ver demo
+                    </a>
+                  )}
+                  <a
+                    href={proyecto.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="proj-btn proj-btn--ghost"
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right: screenshot (order 1 = appears first on mobile) -->
+              {proyecto.imagen && getImg(proyecto.imagen) && (
+                <div class="proj-img-wrap" style="position: relative; overflow: hidden; min-height: 240px; order: 1;">
+                  <Image
+                    src={getImg(proyecto.imagen)!}
+                    alt={`Captura de ${proyecto.nombre}`}
+                    class="proj-img"
+                    width={640}
+                    quality={82}
+                    style="width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; transition: transform 0.5s ease;"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div style="position: absolute; inset: 0; background: linear-gradient(135deg, var(--surface) 0%, transparent 50%); pointer-events: none;" />
+                </div>
               )}
             </div>
           </div>
-        </article>
-      ))
-    }
+        </div>
+      ))}
+    </div>
+
   </div>
 </section>
+
+
+<hr class="hr" />
+
+<style>
+  /* Show/hide por breakpoint */
+  .proj-mobile-list { display: block; }
+  .proj-desktop      { display: none; }
+  @media (min-width: 640px) {
+    .proj-mobile-list { display: none; }
+    .proj-desktop      { display: block; }
+  }
+
+  /* Lista compacta mobile */
+  .proj-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .proj-row:last-child { border-bottom: none; }
+
+  .proj-row-num {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted-2);
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    width: 1.5rem;
+  }
+
+  .proj-row-info { flex: 1; min-width: 0; }
+
+  .proj-row-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .proj-row-badge {
+    font-size: 0.65rem;
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    background: var(--accent-bg);
+    border-radius: 3px;
+    padding: 0 4px;
+    font-family: var(--font-mono);
+  }
+
+  .proj-row-stack {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--muted-2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .proj-row-links {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .proj-icon-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-2);
+    border-radius: 6px;
+    color: var(--muted);
+    background: var(--surface);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .proj-icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .proj-wrapper { margin-bottom: 6rem; }
+  @media (max-width: 639px) { .proj-wrapper { margin-bottom: 2.5rem; } }
+
+  .proj-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.15s, opacity 0.15s;
+    white-space: nowrap;
+  }
+  .proj-btn--primary { background: var(--accent); color: #fff; }
+  .proj-btn--ghost { border: 1px solid var(--border-2); color: var(--muted); background: transparent; }
+  .proj-btn:hover { transform: translateY(-2px); opacity: 0.88; }
+  .proj-img { transition: transform 0.5s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .proj-img { transition: none; }
+  }
+</style>
+
+<script>
+  // Bypass Astro CSS scoping: set 2-column grid via JS on sm+ viewports
+  function updateGridLayout() {
+    const grids = document.querySelectorAll<HTMLElement>('.proj-grid');
+    const is2col = window.innerWidth >= 640;
+    grids.forEach(el => {
+      el.style.gridTemplateColumns = is2col ? '1fr 1fr' : '1fr';
+      el.style.minHeight = is2col ? '320px' : 'auto';
+      const content = el.querySelector<HTMLElement>('.proj-content');
+      const image   = el.querySelector<HTMLElement>('.proj-img-wrap');
+      if (content) {
+        content.style.order   = is2col ? '1' : '2';
+        content.style.padding = is2col ? '2rem' : '1.25rem';
+      }
+      if (image) {
+        image.style.order     = is2col ? '2' : '1';
+        image.style.minHeight = is2col ? '240px' : '160px';
+      }
+    });
+  }
+  updateGridLayout();
+  window.addEventListener('resize', updateGridLayout);
+</script>

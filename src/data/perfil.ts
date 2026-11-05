@@ -1,142 +1,209 @@
-// ============================================================
-//  ÚNICO ARCHIVO QUE NECESITAS EDITAR PARA CAMBIAR TU CONTENIDO
-//  Todo el sitio lee de aquí. Cambia los textos y listo.
-// ============================================================
-
 export const perfil = {
-  nombre: "Josset Portuguez",
-  titulo: "Desarrollador de Software",
-  // Una línea. Qué haces + para quién + con qué resultado.
-  claim:
-    "Construyo aplicaciones web y automatizaciones que reducen trabajo manual y hacen que los datos lleguen a tiempo a quien decide.",
-  ubicacion: "Perú",
-  email: "genry.alberto@agsantaazul.com",
-  telefono: "", // opcional, ej. "+51 999 999 999"
-  cvUrl: "/cv.pdf", // pon tu PDF en la carpeta public/ como cv.pdf
-  disponible: true, // muestra el badge "Disponible para proyectos"
-
-  redes: [
-    { nombre: "GitHub", url: "https://github.com/tu-usuario" },
-    { nombre: "LinkedIn", url: "https://linkedin.com/in/tu-usuario" },
+  nombre: "Josset Yair Portuguéz Rea",
+  titulo: "Desarrollador Front-End",
+  subtitulo: "Programador Web",
+  descripcion:
+    "Desarrollo web y soluciones digitales para empresas. Creo páginas web y aplicaciones que ayudan a negocios a mejorar su presencia digital, optimizar procesos y gestionar su información. Desarrollo interfaces modernas con React y Astro, integro APIs REST y trabajo con bases de datos para construir soluciones funcionales y adaptadas a cada necesidad.",
+  contacto: {
+    telefono: "+51924276198",
+    email: "jossetpr@gmail.com",
+    linkedin: "https://www.linkedin.com/in/josset-portuguez/",
+    github: "https://github.com/Josset2912",
+  },
+  experiencia: [
+    {
+      empresa: "Agrícola Santa Azul S.R.L.",
+      rol: "Programador Web / Auxiliar de TI",
+      periodo: "Feb 2025 – Actualidad",
+      sector: "Agroindustrial",
+      descripcion:
+        "Participación en el desarrollo, mantenimiento y soporte de soluciones tecnológicas para los procesos internos de una empresa del sector agroindustrial.",
+      logros: [
+        "Desarrollo y mantenimiento de aplicaciones web internas.",
+        "Integración de servicios mediante APIs REST.",
+        "Trabajo con bases de datos y consultas SQL Server.",
+        "Implementación y mantenimiento de funcionalidades para usuarios administrativos y operativos.",
+        "Configuración y mantenimiento de aplicaciones en entornos IIS.",
+        "Soporte técnico y atención de incidencias tecnológicas.",
+      ],
+      stack: [
+        "React",
+        "Astro",
+        "JavaScript",
+        "Tailwind CSS",
+        "SQL Server",
+        "Flutter",
+        "Linux",
+        "Raspberry Pi",
+      ],
+    },
+    {
+      empresa: "Naal Corporation S.A.C.",
+      rol: "Practicante de Ciencia de Datos",
+      periodo: "Abr 2024 – Ago 2024",
+      sector: "Tecnológico",
+      descripcion:
+        "Participación en actividades de análisis de datos y desarrollo de soluciones basadas en aprendizaje automático, además de automatización de reportes.",
+      logros: [
+        "Desarrollo de modelos de aprendizaje automático utilizando Python y TensorFlow.",
+        "Preparación y análisis de información.",
+        "Elaboración de reportes y dashboards mediante Power BI.",
+        "Trabajo con bases de datos SQL Server.",
+      ],
+      stack: ["Python", "TensorFlow", "Keras", "Power BI", "SQL Server"],
+    },
+    {
+      empresa: "Universidad Católica Sedes Sapientiae",
+      rol: "Soporte Técnico y Mesa de Ayuda",
+      periodo: "Ago 2022 – Jun 2023",
+      sector: "Educativo",
+      descripcion:
+        "Soporte tecnológico a estudiantes y docentes, documentación de procesos y asistencia en el uso de herramientas informáticas.",
+      logros: [
+        "Atención de incidencias técnicas.",
+        "Elaboración de manuales y documentación.",
+        "Asistencia y orientación a usuarios.",
+        "Capacitación en Microsoft Office y plataformas académicas.",
+      ],
+      stack: [
+        "Windows",
+        "Microsoft Office",
+        "TeamViewer",
+        "Zoom",
+        "Google Workspace",
+      ],
+    },
+    {
+      empresa: "Universidad San Pedro",
+      rol: "Asistente de Digitalización de Documentos",
+      periodo: "Ene 2019 – Dic 2019",
+      sector: "Educativo",
+      descripcion:
+        "Participación en actividades de digitalización de documentos académicos y administrativos.",
+      logros: [
+        "Digitalización y organización de documentos.",
+        "Apoyo en la gestión de información documental.",
+        "Resolución de incidencias técnicas.",
+        "Asistencia a usuarios en herramientas digitales.",
+      ],
+      stack: ["TeamViewer", "Windows Server", "Microsoft Office"],
+    },
   ],
-} as const;
-
-// ------------------------------------------------------------
-//  SOBRE MÍ — 2 o 3 párrafos cortos. Escribe en primera persona.
-// ------------------------------------------------------------
-export const sobreMi = [
-  "Soy desarrollador con foco en aplicaciones web y en resolver problemas reales de operación: procesos que hoy se hacen a mano, reportes que llegan tarde, información que vive en archivos sueltos.",
-  "Trabajo de punta a punta: entiendo el proceso con el usuario, diseño la solución, la construyo y la dejo funcionando en producción. Me interesa que lo que entrego se use, no solo que compile.",
-  "Actualmente busco sumar en un equipo donde pueda tomar responsabilidad técnica y seguir creciendo en arquitectura y buenas prácticas.",
-];
-
-// ------------------------------------------------------------
-//  STACK — agrupa por categoría. Sé honesto: solo lo que puedas defender.
-// ------------------------------------------------------------
-export const stack = [
-  { grupo: "Lenguajes", items: ["JavaScript", "TypeScript", "Python", "SQL", "C#"] },
-  { grupo: "Frontend", items: ["React", "Astro", "Tailwind CSS", "HTML/CSS"] },
-  { grupo: "Backend", items: ["Node.js", "Express", "REST APIs", ".NET"] },
-  { grupo: "Datos", items: ["PostgreSQL", "SQL Server", "MySQL", "Power BI"] },
-  { grupo: "Herramientas", items: ["Git", "Docker", "Linux", "Vercel"] },
-];
-
-// ------------------------------------------------------------
-//  PROYECTOS — lo más importante del portfolio.
-//  Regla: PROBLEMA -> QUÉ HICE -> RESULTADO (con número si puedes).
-//  3 a 5 proyectos bien contados valen más que 12 a medias.
-// ------------------------------------------------------------
-export const proyectos = [
-  {
-    slug: "sistema-reportes",
-    titulo: "Sistema de reportes operativos",
-    resumen:
-      "Panel web que centraliza indicadores de producción que antes se armaban a mano en Excel.",
-    problema:
-      "El reporte diario de producción se consolidaba manualmente desde varias fuentes y tomaba cerca de 2 horas cada mañana, con errores de tipeo frecuentes.",
-    solucion:
-      "Desarrollé una aplicación web que se conecta directo a la base de datos, calcula los indicadores y publica el reporte automáticamente. Incluye filtros por fecha, área y exportación a Excel.",
-    resultado: [
-      "Tiempo de consolidación: de ~2 h a menos de 1 minuto",
-      "Cero errores de transcripción desde su implementación",
-      "Lo usan a diario 12 personas de 3 áreas",
+  habilidades: {
+    Frontend: [
+      "React",
+      "JavaScript",
+      "TypeScript",
+      "Astro",
+      "Tailwind CSS",
+      "HTML5",
+      "CSS3",
     ],
-    stack: ["React", "Node.js", "PostgreSQL", "Docker"],
-    repo: "", // ej. "https://github.com/tu-usuario/proyecto"
-    demo: "", // ej. "https://mi-demo.vercel.app"
-    destacado: true,
-  },
-  {
-    slug: "automatizacion-procesos",
-    titulo: "Automatización de carga de datos",
-    resumen:
-      "Script programado que reemplazó un proceso manual de importación de archivos.",
-    problema:
-      "Cada semana alguien tenía que descargar archivos, limpiarlos y subirlos al sistema. Si esa persona faltaba, el proceso no se hacía.",
-    solucion:
-      "Construí un proceso en Python que descarga, valida y carga los datos de forma programada, con log de errores y aviso por correo cuando algo falla.",
-    resultado: [
-      "Proceso 100 % desatendido, corre 3 veces por semana",
-      "~6 horas de trabajo manual eliminadas al mes",
-      "Validaciones que antes no existían: los datos malos se detectan antes de entrar",
-    ],
-    stack: ["Python", "SQL Server", "Task Scheduler"],
-    repo: "",
-    demo: "",
-    destacado: true,
-  },
-  {
-    slug: "portafolio-web",
-    titulo: "Este portafolio",
-    resumen:
-      "Sitio estático construido con Astro y Tailwind, desplegado con CI en cada push.",
-    problema:
-      "Necesitaba una presencia profesional propia, rápida y fácil de mantener, sin depender de plantillas cerradas.",
-    solucion:
-      "Lo construí con Astro (HTML estático, cero JavaScript innecesario), Tailwind para el diseño y despliegue automático en cada commit.",
-    resultado: [
-      "Carga en menos de 1 segundo, puntuación alta en Lighthouse",
-      "Contenido centralizado en un solo archivo de datos",
-      "Despliegue automático: push a main = sitio actualizado",
-    ],
-    stack: ["Astro", "TypeScript", "Tailwind CSS", "Vercel"],
-    repo: "",
-    demo: "",
-    destacado: false,
-  },
-];
-
-// ------------------------------------------------------------
-//  EXPERIENCIA — enfócate en logros, no en tareas.
-//  Mal: "Encargado de dar soporte a usuarios".
-//  Bien: "Reduje el tiempo de respuesta de soporte de 3 días a 8 horas".
-// ------------------------------------------------------------
-export const experiencia = [
-  {
-    puesto: "Tu puesto actual",
-    empresa: "Tu empresa",
-    periodo: "2024 — Actualidad",
-    logros: [
-      "Logro concreto con número o impacto medible.",
-      "Segundo logro: qué construiste y qué cambió por eso.",
-      "Tercer logro: alcance (cuántos usuarios, cuántas áreas, cuánto ahorro).",
+    Backend: ["Node.js", "PHP", "Python", "Express"],
+    "Bases de datos": ["SQL Server", "PostgreSQL"],
+    "Data & ML": ["TensorFlow", "Keras", "Power BI"],
+    Herramientas: [
+      "Git",
+      "Postman",
+      "Linux",
+      "IIS",
+      "Raspberry Pi",
+      "Flutter",
+      "TeamViewer",
+      "Windows Server",
     ],
   },
-  {
-    puesto: "Puesto anterior",
-    empresa: "Empresa anterior",
-    periodo: "2022 — 2024",
-    logros: [
-      "Logro concreto.",
-      "Otro logro con impacto.",
-    ],
+  proyectos: [
+    {
+      nombre: "Blanco Dental",
+      descripcion:
+        "Sistema web completo para gestión de clínica dental. Administra pacientes, citas, tratamientos, pagos y genera reportes con estadísticas mensuales. Incluye odontograma interactivo, imágenes en Cloudinary y roles con autenticación JWT.",
+      stack: [
+        "React 19",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Prisma",
+        "Cloudinary",
+        "TanStack Query",
+        "Recharts",
+      ],
+      github: "https://github.com/Josset2912/dental-blanco",
+      demo: "https://dental-blanco-seven.vercel.app",
+      imagen: "blanco-dental.jpg",
+      destacado: true,
+    },
+    {
+      nombre: "NutriKids",
+      descripcion:
+        "Plataforma educativa para la prevención de la anemia infantil. Visualiza recetas nutritivas ricas en hierro organizadas por rango de edad, orientada a padres y cuidadores.",
+      stack: ["Astro", "TypeScript", "CSS"],
+      github: "https://github.com/Josset2912/anemia-information",
+      demo: "https://lucha-contra-la-anemia.netlify.app",
+      imagen: "nutrikids.jpg",
+      destacado: false,
+    },
+    {
+      nombre: "PackingWeb",
+      descripcion:
+        "Sitio web oficial desarrollado para empresa de embalaje y packaging. Proyecto colaborativo con foco en presentación de servicios y experiencia de usuario.",
+      stack: ["JavaScript", "HTML", "CSS"],
+      github: "https://github.com/Josset2912/PackingWebOfficial",
+      demo: null,
+      imagen: "packingweb.jpg",
+      destacado: false,
+    },
+    {
+      nombre: "Consientete",
+      descripcion:
+        "Landing page para centro de belleza y cosmetica en Huacho. Presenta servicios de unas, maquillaje y tratamientos con diseno elegante, animaciones y seccion de contacto.",
+      stack: ["Astro", "TypeScript", "Tailwind CSS"],
+      github: "https://github.com/Josset2912/cosmetico-u-as",
+      demo: "https://consientete.netlify.app",
+      imagen: "consientete.jpg",
+      destacado: false,
+    },
+    {
+      nombre: "Buscador de IP",
+      descripcion:
+        "Aplicacion web que permite buscar informacion de cualquier direccion IP — ubicacion, pais, ciudad, ISP y coordenadas — consumiendo una API de geolocalización con interfaz limpia y responsive.",
+      stack: ["JavaScript", "HTML", "CSS"],
+      github: "https://github.com/Josset2912/BuscadorIp",
+      demo: "https://buscador-ip-2024.netlify.app",
+      imagen: "buscador-ip.jpg",
+      destacado: false,
+    },
+    {
+      nombre: "Pokedex",
+      descripcion:
+        "Aplicacion web que consume la PokeAPI para visualizar, buscar y explorar informacion de Pokemon — nombre, tipo, imagen y estadisticas — con filtrado por tipo y diseno responsive.",
+      stack: ["JavaScript", "HTML", "CSS", "PokeAPI"],
+      github: "https://github.com/Josset2912/Pokedex",
+      demo: "https://pokedex-2024-1.netlify.app",
+      imagen: "pokedex.jpg",
+      destacado: false,
+    },
+  ],
+  educacion: {
+    titulo: "Ingeniería de Sistemas",
+    institucion: "Universidad César Vallejo",
+  /*   periodo: "Abr 2019 – 2024",
+    estado: "Titulado", */
   },
-];
-
-// ------------------------------------------------------------
-//  FORMACIÓN Y CERTIFICACIONES
-// ------------------------------------------------------------
-export const formacion = [
-  { titulo: "Tu carrera o técnico", institucion: "Tu institución", periodo: "2018 — 2023" },
-  { titulo: "Certificación relevante", institucion: "Emisor", periodo: "2024" },
-];
+  certificaciones: [
+    {
+      entidad: "Certiprof",
+      nombre: "Business Intelligence Foundation (BIFPC)",
+    },
+    { entidad: "Certiprof", nombre: "Scrum Foundation Professional (SFPC)" },
+    { entidad: "Nextech", nombre: "Base de datos SQL Server 2019" },
+    { entidad: "NETZUN", nombre: "Especialización en Excel" },
+    { entidad: "SKILL", nombre: "Actualización en Microsoft Power BI" },
+    { entidad: "Ing. Consultores", nombre: "Ofimática Profesional" },
+  ],
+  idiomas: [
+    /* { idioma: "Español", nivel: "Nativo" },
+    { idioma: "Inglés", nivel: "Intermedio" }, */
+  ],
+};

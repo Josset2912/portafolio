@@ -1,124 +1,153 @@
 @import "tailwindcss";
-@import "./animations.css";
 
-/* ---------- Tokens de diseño PREMIUM ---------- */
+/* ── Dark theme — Inked palette ── */
 :root {
-  --bg: #ffffff;
-  --bg-soft: #f8fafc;
-  --card: #ffffff;
-  --border: #e2e8f0;
-  --text: #0f172a;
-  --text-soft: #475569;
-  --accent: #4f46e5;
-  --accent-soft: #eef2ff;
-  color-scheme: light;
+  --bg:          #000000;
+  --surface:     #181817;
+  --surface-2:   #242423;
+  --border:      #333231;
+  --border-2:    #464545;
+  --text:        #dfdedc;
+  --muted:       #a6a7a2;
+  --muted-2:     #757672;
+  --accent:      #00acac;
+  --accent-bg:   rgba(0, 172, 172, 0.10);
+  --accent-border: rgba(0, 172, 172, 0.35);
+  --green:       #00acac;
+  --font-display: "Gabarito Variable", "Gabarito", sans-serif;
+  --font-body:    "Inter Variable", "Inter", sans-serif;
+  --font-mono:    "JetBrains Mono Variable", "JetBrains Mono", monospace;
 }
 
-:root[data-theme="dark"] {
-  --bg: #0f172a;
-  --bg-soft: #1e293b;
-  --card: #1e293b;
-  --border: #334155;
-  --text: #f1f5f9;
-  --text-soft: #cbd5e1;
-  --accent: #6366f1;
-  --accent-soft: #312e81;
-  color-scheme: dark;
+/* ── Light theme — Inked palette ── */
+[data-theme="light"] {
+  --bg:          #dfdedc;
+  --surface:     #f0efed;
+  --surface-2:   #e8e7e5;
+  --border:      #c8c7c5;
+  --border-2:    #a6a7a2;
+  --text:        #000000;
+  --muted:       #464545;
+  --muted-2:     #757672;
+  --accent:      #00acac;
+  --accent-bg:   rgba(0, 172, 172, 0.10);
+  --accent-border: rgba(0, 172, 172, 0.35);
+  --green:       #00acac;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0b0d10;
-    --bg-soft: #11141a;
-    --card: #12161d;
-    --border: #232935;
-    --text: #eef1f6;
-    --text-soft: #9aa3b2;
-    --accent: #6ea8ff;
-    --accent-soft: #16202f;
-    color-scheme: dark;
-  }
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  margin: 0;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* ---------- Utilidades semánticas ---------- */
-.wrap { max-width: 68rem; margin-inline: auto; padding-inline: 1.25rem; }
-.muted { color: var(--text-soft); }
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 0.875rem;
-}
-.chip {
-  display: inline-block;
-  font-size: 0.75rem;
-  line-height: 1;
-  padding: 0.4rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  color: var(--text-soft);
-  background: var(--bg-soft);
-  white-space: nowrap;
-}
-.link-accent { color: var(--accent); text-decoration: none; }
-.link-accent:hover { text-decoration: underline; }
+::selection { background: var(--accent); color: var(--bg); }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  text-decoration: none;
-  border: 1px solid transparent;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  cursor: pointer;
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-2); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
 }
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(99, 102, 241, 0.3);
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
-.btn-ghost {
-  border-color: var(--border);
+
+/* Hero name */
+.hero-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 15vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
   color: var(--text);
-  background: transparent;
 }
-.btn-ghost:hover {
-  background: var(--bg-soft);
-  border-color: var(--accent);
+
+/* Section typography */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.10em;
   color: var(--accent);
-  transform: translateY(-1px);
+  display: block;
+  margin-bottom: 0.75rem;
 }
 
 .section-title {
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text);
 }
 
-/* Respeta usuarios que piden menos movimiento */
+/* Metric numbers */
+.metric-num {
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 5.5vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--accent);
+}
+
+/* Tech chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--muted);
+  background: var(--surface);
+  transition: color 0.18s, border-color 0.18s;
+  white-space: nowrap;
+}
+.chip:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+.chip svg { flex-shrink: 0; }
+
+/* Horizontal rule */
+.hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* Stack marquee animation */
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { transition: none !important; animation: none !important; }
+  @keyframes marquee-left { 0%, 100% { transform: none; } }
 }

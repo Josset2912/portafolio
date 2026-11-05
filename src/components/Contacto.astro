@@ -2,65 +2,279 @@
 import { perfil } from "../data/perfil";
 ---
 
-<section id="contacto" class="wrap py-20" style="border-top: 1px solid var(--border)">
-  <div class="card p-12 sm:p-16 glass-dark" style="position: relative; overflow: hidden;" data-animate="fade-up">
-    <div class="absolute inset-0 opacity-5 pointer-events-none"
-      style="background: radial-gradient(circle at 20% 50%, var(--accent) 0%, transparent 50%);">
-    </div>
+<section
+  id="contacto"
+  class="px-6 md:px-12 pt-24 pb-0"
+  style="background: var(--bg);"
+>
+  <div class="max-w-6xl mx-auto">
 
-    <div class="relative z-10">
-      <p class="section-title m-0">Siguiente paso</p>
+    <!-- Top: CTA block -->
+    <div class="grid md:grid-cols-12 gap-12 md:gap-16 items-end pb-16" style="border-bottom: 1px solid var(--border);">
 
-      <h2 class="mt-4 mb-0 max-w-3xl text-3xl sm:text-4xl font-black leading-tight">
-        ¿Trabajamos juntos?
-      </h2>
-
-      <p class="muted mt-6 max-w-2xl text-lg leading-relaxed font-light">
-        Cuéntame sobre tu proyecto o el desafío que enfrenta tu equipo. Respondo en menos de 24 horas con ideas claras y sin vueltas.
-      </p>
-
-      <div class="mt-10 flex flex-wrap items-center gap-4">
-        <a
-          href={`mailto:${perfil.email}`}
-          class="btn btn-primary px-8 py-4 text-lg font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-          style="display: inline-flex; align-items: center; gap: 8px;"
+      <!-- Left: headline + description + pill -->
+      <div class="md:col-span-7 reveal">
+        <span class="section-label">/ Contacto</span>
+        <h2
+          style="
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(2.75rem, 7vw, 5.5rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+          "
         >
-          ✉️ {perfil.email}
-        </a>
-
-        {perfil.telefono && (
-          <a
-            href={`https://wa.me/${perfil.telefono.replace(/\D/g, "")}`}
-            class="btn btn-ghost px-8 py-4 text-lg font-bold transition-all duration-300 hover:-translate-y-1"
-            target="_blank"
-            rel="noopener noreferrer"
-            style="display: inline-flex; align-items: center; gap: 8px;"
-          >
-            💬 WhatsApp
-          </a>
-        )}
+          Trabajemos<br/>juntos
+        </h2>
+        <p class="text-base leading-relaxed mb-3" style="color: var(--muted); max-width: 50ch;">
+          ¿Tienes una idea, necesitas una página web o buscas implementar un sistema
+          para tu negocio? Puedo ayudarte a convertir tus necesidades en soluciones
+          digitales modernas, funcionales y adaptadas a tus objetivos.
+        </p>
+        <p class="text-base leading-relaxed mb-6" style="color: var(--muted); max-width: 50ch;">
+          También estoy abierto a nuevas oportunidades laborales donde pueda aportar
+          mis conocimientos y continuar desarrollándome profesionalmente.
+        </p>
+        <!-- Availability pill below description -->
+        <div class="avail-pill">
+          <span class="avail-dot" />
+          Disponible para proyectos
+        </div>
       </div>
 
-      <div class="mt-10 pt-10" style="border-top: 1px solid var(--border);">
-        <p class="text-xs uppercase tracking-wider font-bold" style="color: var(--text-soft); margin-bottom: 1rem;">
-          Redes profesionales
-        </p>
-        <div class="flex gap-3 flex-wrap">
-          {
-            perfil.redes.map((r) => (
-              <a
-                href={r.url}
-                class="px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="border: 1px solid var(--border); color: var(--text); background: transparent; text-decoration: none;"
-              >
-                {r.nombre}
-              </a>
-            ))
-          }
+      <!-- Right: buttons only -->
+      <div class="md:col-span-5 flex flex-col gap-4 justify-end reveal reveal-delay-2">
+
+        <!-- CTA buttons -->
+        <div class="flex flex-col gap-3">
+          <a
+            href={"https://wa.me/" + perfil.contacto.telefono.replace("+", "") + "?text=Hola%20Josset%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20contigo%20sobre%20un%20proyecto."}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cta-primary"
+          >
+            <!-- WhatsApp icon -->
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Enviar mensaje
+            <svg class="cta-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a
+            href={perfil.contacto.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cta-secondary"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            Ver LinkedIn
+          </a>
         </div>
       </div>
     </div>
+
+    <!-- Bottom: contact links row -->
+    <div class="contact-links reveal reveal-delay-3">
+
+      <a href={"mailto:" + perfil.contacto.email} class="contact-link">
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">
+          {perfil.contacto.email}
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7"/>
+            <polyline points="7 7 17 7 17 17"/>
+          </svg>
+        </span>
+      </a>
+
+      <div class="contact-divider" />
+
+      <a href={perfil.contacto.github} target="_blank" rel="noopener noreferrer" class="contact-link">
+        <span class="contact-link-label">GitHub</span>
+        <span class="contact-link-value">
+          Josset2912
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7"/>
+            <polyline points="7 7 17 7 17 17"/>
+          </svg>
+        </span>
+      </a>
+
+      <div class="contact-divider" />
+
+    <!--   <div class="contact-link" style="cursor: default;">
+        <span class="contact-link-label">Teléfono</span>
+        <span class="contact-link-value" style="pointer-events: none;">
+          {perfil.contacto.telefono}
+        </span>
+      </div> -->
+
+      <div class="contact-divider" />
+
+      <a href={perfil.contacto.linkedin} target="_blank" rel="noopener noreferrer" class="contact-link">
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">
+          josset-yair-portuguéz-rea
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7"/>
+            <polyline points="7 7 17 7 17 17"/>
+          </svg>
+        </span>
+      </a>
+
+    </div>
+
   </div>
 </section>
+
+<style>
+  /* Availability pill */
+  .avail-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    border-radius: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--green);
+    width: fit-content;
+  }
+
+  .avail-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--accent-border);
+    animation: pulse-green 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--accent-border); }
+    50%       { opacity: 0.6; box-shadow: 0 0 12px var(--accent-bg); }
+  }
+
+  /* CTA primary */
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.5rem;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  .cta-arrow {
+    margin-left: auto;
+    transition: transform 0.2s;
+  }
+
+  .cta-primary:hover .cta-arrow {
+    transform: translate(3px, -3px);
+  }
+
+  /* CTA secondary */
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.5rem;
+    border: 1px solid var(--border-2);
+    color: var(--muted);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    width: 100%;
+  }
+
+  .cta-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Contact links row */
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding: 0.5rem 0;
+  }
+
+  .contact-divider {
+    width: 1px;
+    background: var(--border);
+    margin: 1rem 0;
+    flex-shrink: 0;
+  }
+
+  .contact-link {
+    flex: 1;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    border-radius: 6px;
+    group: true;
+  }
+
+  .contact-link:not([style*="cursor: default"]):hover {
+    background: var(--surface);
+  }
+
+  .contact-link-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--muted-2);
+    text-transform: uppercase;
+  }
+
+  .contact-link-value {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    transition: color 0.2s;
+    font-family: var(--font-body);
+  }
+
+  .contact-link:not([style*="cursor: default"]):hover .contact-link-value {
+    color: var(--text);
+  }
+
+  @media (max-width: 640px) {
+    .contact-divider { display: none; }
+    .contact-link { min-width: 45%; padding: 1rem; }
+  }
+</style>

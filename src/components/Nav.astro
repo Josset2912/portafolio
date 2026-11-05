@@ -1,62 +1,402 @@
 ---
-import { perfil } from "../data/perfil";
-
-const enlaces = [
-  { href: "/#sobre-mi", texto: "Sobre mí" },
-  { href: "/#proyectos", texto: "Proyectos" },
-  { href: "/#stack", texto: "Stack" },
-  { href: "/#experiencia", texto: "Experiencia" },
-  { href: "/#contacto", texto: "Contacto" },
+const links = [
+  { href: "#sobre-mi",    label: "Sobre mí" },
+  { href: "#experiencia", label: "Experiencia" },
+  { href: "#stack",       label: "Stack" },
+  { href: "#proyectos",   label: "Proyectos" },
+  { href: "#contacto",    label: "Contacto" },
 ];
 ---
 
-<header
-  class="sticky top-0 z-50 backdrop-blur"
-  style="background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border);"
->
-  <nav class="wrap flex h-16 items-center justify-between gap-4">
-    <a href="/" class="font-semibold tracking-tight no-underline" style="color: var(--text)">
-      {perfil.nombre.split(" ")[0]}<span style="color: var(--accent)">.</span>
+<nav id="main-nav" aria-label="Navegación principal">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="#" class="nav-logo" aria-label="Inicio">
+      <span class="nav-logo-bracket">[</span>JP<span class="nav-logo-bracket">]</span>
     </a>
 
-    <ul class="hidden items-center gap-6 md:flex list-none m-0 p-0">
-      {
-        enlaces.map((e) => (
-          <li>
-            <a href={e.href} class="text-sm no-underline muted hover:opacity-70">
-              {e.texto}
-            </a>
-          </li>
-        ))
-      }
+    <!-- Desktop links -->
+    <ul class="nav-links" role="list">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="nav-link">{link.label}</a>
+        </li>
+      ))}
     </ul>
 
-    <div class="flex items-center gap-2">
-      <button
-        id="toggle-tema"
-        type="button"
-        aria-label="Cambiar tema claro/oscuro"
-        class="grid h-9 w-9 place-items-center rounded-lg"
-        style="border: 1px solid var(--border); color: var(--text-soft); background: transparent;"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    <!-- Right: theme toggle + CTA -->
+    <div class="nav-actions">
+      <button id="theme-toggle" aria-label="Cambiar tema" class="theme-btn">
+        <!-- Sun icon (dark mode) -->
+        <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (light mode) -->
+        <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:none;">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
-      <a href="/#contacto" class="btn btn-primary hidden sm:inline-flex">Contactar</a>
+
+      <a href="https://wa.me/51924276198?text=Hola%20Josset%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20contigo." class="nav-cta" target="_blank" rel="noopener noreferrer">
+        Hablemos
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M7 17L17 7M17 7H7M17 7v10"/>
+        </svg>
+      </a>
     </div>
-  </nav>
-</header>
+
+    <!-- Mobile: theme toggle + hamburger -->
+    <div class="nav-mobile-controls">
+      <button id="theme-toggle-mobile" aria-label="Cambiar tema" class="theme-btn">
+        <svg id="icon-sun-mobile" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg id="icon-moon-mobile" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <button
+        id="menu-btn"
+        class="hamburger"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <ul class="mobile-links" role="list">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="mobile-link" onclick="closeMenu()">{link.label}</a>
+        </li>
+      ))}
+    </ul>
+    <div class="mobile-cta-row">
+      <a href="https://wa.me/51924276198?text=Hola%20Josset%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20contigo." class="nav-cta" target="_blank" rel="noopener noreferrer">
+        Hablemos
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M7 17L17 7M17 7H7M17 7v10"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* ── Floating pill shell ── */
+  #main-nav {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 1000px;
+    z-index: 50;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(9, 9, 11, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  }
+
+  :global([data-theme="light"]) #main-nav {
+    background: rgba(250, 250, 250, 0.88);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  #main-nav.nav-scrolled {
+    border-color: var(--border-2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+  }
+
+  :global([data-theme="light"]) #main-nav.nav-scrolled {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  }
+
+  /* ── Inner layout ── */
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    padding: 0 20px;
+    gap: 12px;
+  }
+
+  /* ── Logo ── */
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo-bracket {
+    color: var(--muted-2);
+    font-weight: 400;
+  }
+
+  /* ── Desktop links ── */
+  .nav-links {
+    display: none;
+    list-style: none;
+    margin: 0; padding: 0;
+    align-items: center;
+    gap: 2px;
+  }
+  @media (min-width: 768px) {
+    .nav-links { display: flex; }
+  }
+
+  .nav-link {
+    display: block;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-link:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+
+  /* ── Right actions ── */
+  .nav-actions {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  @media (min-width: 768px) {
+    .nav-actions { display: flex; }
+  }
+
+  /* ── Theme button ── */
+  .theme-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-2);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    flex-shrink: 0;
+  }
+  .theme-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent-border);
+    background: var(--accent-bg);
+  }
+
+  /* ── CTA button ── */
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .nav-cta:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+  .nav-cta svg {
+    transition: transform 0.2s;
+  }
+  .nav-cta:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  /* ── Mobile controls ── */
+  .nav-mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  @media (min-width: 768px) {
+    .nav-mobile-controls { display: none; }
+  }
+
+  /* ── Hamburger ── */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    gap: 5px;
+    border-radius: 8px;
+    border: 1px solid var(--border-2);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+  .bar {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: var(--muted);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+
+  /* ── Mobile menu ── */
+  .mobile-menu {
+    display: none;
+    border-top: 1px solid var(--border);
+    padding: 8px 20px 16px;
+  }
+
+  .mobile-links {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-link {
+    display: block;
+    padding: 11px 4px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.15s;
+  }
+  .mobile-link:hover { color: var(--text); }
+
+  .mobile-cta-row {
+    padding-top: 16px;
+  }
+  .mobile-cta-row .nav-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+  }
+</style>
 
 <script>
-  const boton = document.getElementById("toggle-tema");
-  boton?.addEventListener("click", () => {
-    const raiz = document.documentElement;
-    const nuevo = raiz.dataset.theme === "dark" ? "light" : "dark";
-    raiz.dataset.theme = nuevo;
-    try {
-      localStorage.setItem("tema", nuevo);
-    } catch (e) {}
-  });
+  /* ── Theme toggle ── */
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById('theme-toggle');
+  const sun = document.getElementById('icon-sun');
+  const moon = document.getElementById('icon-moon');
+
+  function applyTheme(theme: string) {
+    if (theme === 'light') {
+      html.setAttribute('data-theme', 'light');
+      sun!.style.display = 'none';
+      moon!.style.display = 'block';
+    } else {
+      html.removeAttribute('data-theme');
+      sun!.style.display = 'block';
+      moon!.style.display = 'none';
+    }
+  }
+
+  try {
+    const saved = localStorage.getItem('theme') || 'dark';
+    applyTheme(saved);
+  } catch(e) {}
+
+  const sunMobile  = document.getElementById('icon-sun-mobile');
+  const moonMobile = document.getElementById('icon-moon-mobile');
+
+  function syncMobileIcons(theme: string) {
+    if (sunMobile && moonMobile) {
+      sunMobile.style.display  = theme === 'light' ? 'none'  : 'block';
+      moonMobile.style.display = theme === 'light' ? 'block' : 'none';
+    }
+  }
+  try { syncMobileIcons(localStorage.getItem('theme') || 'dark'); } catch(e) {}
+
+  function doToggle() {
+    const current = html.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const next = current === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    syncMobileIcons(next);
+    try { localStorage.setItem('theme', next); } catch(e) {}
+  }
+
+  toggleBtn?.addEventListener('click', doToggle);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', doToggle);
+
+  /* ── Scroll state ── */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('nav-scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── Mobile menu ── */
+  const btn  = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const bars = document.querySelectorAll('.bar');
+  let open = false;
+
+  function openMenu() {
+    open = true;
+    menu!.style.display = 'block';
+    menu!.setAttribute('aria-hidden', 'false');
+    btn!.setAttribute('aria-expanded', 'true');
+    (bars[0] as HTMLElement).style.transform = 'translateY(6.5px) rotate(45deg)';
+    (bars[1] as HTMLElement).style.opacity   = '0';
+    (bars[2] as HTMLElement).style.transform = 'translateY(-6.5px) rotate(-45deg)';
+  }
+
+  function closeMenu() {
+    open = false;
+    menu!.style.display = 'none';
+    menu!.setAttribute('aria-hidden', 'true');
+    btn!.setAttribute('aria-expanded', 'false');
+    (bars[0] as HTMLElement).style.transform = '';
+    (bars[1] as HTMLElement).style.opacity   = '1';
+    (bars[2] as HTMLElement).style.transform = '';
+  }
+
+  btn?.addEventListener('click', () => open ? closeMenu() : openMenu());
+  (window as any).closeMenu = closeMenu;
 </script>

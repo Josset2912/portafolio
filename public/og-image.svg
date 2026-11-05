@@ -1,0 +1,76 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="30%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#00acac" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dot-fade" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#27272a" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#09090b"/>
+
+  <!-- Dot grid pattern (approximate) -->
+  <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+    <circle cx="14" cy="14" r="1" fill="#27272a"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#dots)" opacity="0.6"/>
+  <rect width="1200" height="630" fill="url(#dot-fade)" opacity="0.7"/>
+
+  <!-- Purple glow -->
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Border frame -->
+  <rect x="32" y="32" width="1136" height="566" fill="none" stroke="#27272a" stroke-width="1" rx="12"/>
+
+  <!-- Accent top line -->
+  <rect x="80" y="200" width="48" height="3" fill="#00acac" rx="2"/>
+
+  <!-- Name -->
+  <text x="80" y="286" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="800" fill="#fafafa" letter-spacing="-2.5">Josset Yair</text>
+  <text x="80" y="366" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="800" fill="#fafafa" letter-spacing="-2.5">Portuguéz Rea</text>
+
+  <!-- Role -->
+  <text x="80" y="430" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="22" fill="#a1a1aa" letter-spacing="0">Programador Web · Desarrollador Full-Stack</text>
+
+  <!-- Tech chips row -->
+  <g transform="translate(80, 460)">
+    <rect x="0" y="0" width="80" height="28" fill="#18181b" stroke="#3f3f46" stroke-width="1" rx="4"/>
+    <text x="40" y="19" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#a1a1aa">React</text>
+
+    <rect x="92" y="0" width="104" height="28" fill="#18181b" stroke="#3f3f46" stroke-width="1" rx="4"/>
+    <text x="144" y="19" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#a1a1aa">TypeScript</text>
+
+    <rect x="208" y="0" width="72" height="28" fill="#18181b" stroke="#3f3f46" stroke-width="1" rx="4"/>
+    <text x="244" y="19" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#a1a1aa">Astro</text>
+
+    <rect x="292" y="0" width="80" height="28" fill="#18181b" stroke="#3f3f46" stroke-width="1" rx="4"/>
+    <text x="332" y="19" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#a1a1aa">Python</text>
+
+    <rect x="384" y="0" width="96" height="28" fill="#18181b" stroke="#3f3f46" stroke-width="1" rx="4"/>
+    <text x="432" y="19" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#a1a1aa">Power BI</text>
+  </g>
+
+  <!-- Eyebrow pill top -->
+  <rect x="80" y="148" width="220" height="36" fill="rgba(124,58,237,0.10)" stroke="rgba(124,58,237,0.30)" stroke-width="1" rx="20"/>
+  <circle cx="102" cy="166" r="4" fill="#4ade80"/>
+  <text x="116" y="171" font-family="'JetBrains Mono', monospace" font-size="13" fill="#00acac">Disponible · Perú</text>
+
+  <!-- Avatar initials circle (right side) -->
+  <circle cx="980" cy="315" r="160" fill="#111113" stroke="rgba(124,58,237,0.30)" stroke-width="1.5"/>
+  <circle cx="980" cy="315" r="168" fill="none" stroke="rgba(124,58,237,0.12)" stroke-width="1"/>
+  <text x="980" y="368" text-anchor="middle" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="96" font-weight="800" fill="#00acac" letter-spacing="-4">JP</text>
+
+  <!-- Subtle radial glow behind avatar -->
+  <radialGradient id="avatar-glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#00acac" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="980" cy="315" r="260" fill="url(#avatar-glow)"/>
+
+  <!-- URL footer -->
+  <text x="80" y="560" font-family="'JetBrains Mono', monospace" font-size="14" fill="#3f3f46">jossetportuguez.dev</text>
+</svg>

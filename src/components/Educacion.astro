@@ -1,0 +1,210 @@
+---
+import { perfil } from "../data/perfil";
+---
+
+<section
+  class="px-6 md:px-12 py-20"
+  style="background: var(--surface);"
+>
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-12 gap-12 md:gap-16 items-start">
+
+      <!-- Left col -->
+      <div class="md:col-span-4 reveal">
+        <span class="section-label">/ Formación</span>
+        <h2 class="section-title">Educación y certificaciones</h2>
+        <p class="mt-4 text-sm leading-relaxed" style="color: var(--muted);">
+          Formación universitaria y certificaciones profesionales obtenidas.
+        </p>
+      </div>
+
+      <!-- Right col -->
+      <div class="md:col-span-8 flex flex-col gap-8">
+
+        <!-- Degree — featured card -->
+        <div class="degree-card reveal" style="position: relative; overflow: hidden;">
+          <!-- Accent glow top-left -->
+          <div class="degree-glow" />
+
+          <div style="position: relative; z-index: 1;">
+            <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+              <!-- Left: label + title + university -->
+              <div>
+                <span
+                  class="text-xs mb-2 inline-block"
+                  style="font-family: var(--font-mono); letter-spacing: 0.08em; color: var(--accent);"
+                >
+                  Carrera universitaria
+                </span>
+                <h3
+                  style="font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--text); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.4rem;"
+                >
+                  {perfil.educacion.titulo}
+                </h3>
+                <p class="text-sm" style="color: var(--muted);">{perfil.educacion.institucion}</p>
+              </div>
+
+              <!-- Right: Titulado badge -->
+              {perfil.educacion.estado && (
+                <span class="titulado-badge">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  {perfil.educacion.estado}
+                </span>
+              )}
+            </div>
+
+            <!-- Bottom: period + divider -->
+            <div class="flex items-center gap-3">
+              <div style="height: 1px; flex: 1; background: var(--border);" />
+              <span class="text-xs" style="font-family: var(--font-mono); color: var(--muted-2);">
+                {perfil.educacion.periodo}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted-2); white-space: nowrap;">
+              Certificaciones
+            </span>
+            <div style="flex: 1; height: 1px; background: var(--border);" />
+            <span class="text-xs" style="font-family: var(--font-mono); color: var(--border-2);">
+              {perfil.certificaciones.length}
+            </span>
+          </div>
+
+          <div class="cert-grid">
+            {
+              perfil.certificaciones.map((cert, i) => (
+                <div class={`cert-card reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+                  <div class="cert-dot" />
+                  <div>
+                    <p class="cert-entity">{cert.entidad}</p>
+                    <p class="cert-name">{cert.nombre}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr" />
+
+<style>
+  /* Degree card */
+  .degree-card {
+    padding: 1.75rem;
+    background: var(--surface-2);
+    border: 1px solid var(--accent-border);
+    border-radius: 14px;
+  }
+
+  .degree-glow {
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Titulado badge */
+  .titulado-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.10);
+    border: 1px solid rgba(74, 222, 128, 0.30);
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Cert grid */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .cert-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border);
+    margin: -1px 0 0 -1px; /* collapse borders */
+    background: var(--surface-2);
+    transition: background 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+
+  .cert-card:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent-border);
+    z-index: 1;
+    position: relative;
+  }
+
+  /* rounded corners for each corner card */
+  .cert-card:nth-child(1) { border-radius: 10px 0 0 0; }
+  .cert-card:nth-child(2) { border-radius: 0 10px 0 0; }
+  .cert-card:nth-last-child(2) { border-radius: 0 0 0 10px; }
+  .cert-card:last-child { border-radius: 0 0 10px 0; }
+
+  .cert-dot {
+    margin-top: 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-2);
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .cert-card:hover .cert-dot {
+    background: var(--accent);
+  }
+
+  .cert-entity {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+
+  .cert-name {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.35;
+    transition: color 0.2s;
+  }
+
+  .cert-card:hover .cert-name {
+    color: var(--text);
+  }
+
+  @media (max-width: 480px) {
+    .cert-grid { grid-template-columns: 1fr; }
+    .cert-card:nth-child(1) { border-radius: 10px 10px 0 0; }
+    .cert-card:nth-child(2) { border-radius: 0; }
+    .cert-card:nth-last-child(2) { border-radius: 0; }
+    .cert-card:last-child { border-radius: 0 0 10px 10px; }
+  }
+</style>
