@@ -113,7 +113,16 @@ const CARD_PEEK  = 36;
                 </div>
 
                 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                  {proyecto.demo && (
+                  {proyecto.destacado && (
+                    <a href="/proyectos/blanco-dental" class="proj-btn proj-btn--primary">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                      </svg>
+                      Caso de estudio
+                    </a>
+                  )}
+                  {proyecto.demo && !proyecto.destacado && (
                     <a
                       href={proyecto.demo}
                       target="_blank"
@@ -126,6 +135,21 @@ const CARD_PEEK  = 36;
                         <line x1="10" y1="14" x2="21" y2="3"/>
                       </svg>
                       Ver demo
+                    </a>
+                  )}
+                  {proyecto.demo && proyecto.destacado && (
+                    <a
+                      href={proyecto.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="proj-btn proj-btn--ghost"
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                      Demo
                     </a>
                   )}
                   <a

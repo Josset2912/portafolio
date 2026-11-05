@@ -55,8 +55,21 @@ const mainTechs = [
           </div>
         </div>
 
+        <!-- GitHub Stats -->
+        <div class="mt-6">
+          <img
+            src="https://github-readme-stats.vercel.app/api?username=Josset2912&show_icons=true&hide_border=true&bg_color=00000000&title_color=00acac&icon_color=00acac&text_color=888888&ring_color=00acac&count_private=true&hide_title=true"
+            alt="GitHub Stats — Josset Portuguéz"
+            width="400"
+            height="120"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: auto; border-radius: 8px;"
+          />
+        </div>
+
         <!-- Languages -->
-        {perfil.idiomas.length > 0 && <div class="mt-6 flex flex-col gap-2">
+        {perfil.idiomas.length > 0 && <div class="mt-4 flex flex-col gap-2">
           {perfil.idiomas.map((l) => (
             <div class="flex items-center justify-between">
               <span class="text-sm" style="color: var(--muted); font-family: var(--font-body);">{l.idioma}</span>

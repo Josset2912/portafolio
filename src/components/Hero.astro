@@ -47,6 +47,14 @@ const roles = ["Programador Web", "Desarrollador Full-Stack", "Ingeniero de Sist
           </div>
         </div>
 
+        <!-- Availability -->
+        <div class="mb-3 reveal">
+          <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.75rem; background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 20px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--green);">
+            <span style="width: 5px; height: 5px; border-radius: 50%; background: var(--green); display: inline-block; box-shadow: 0 0 6px var(--green); animation: pulse-avail 2s ease-in-out infinite;"></span>
+            Disponible · trabajo remoto
+          </span>
+        </div>
+
         <!-- Eyebrow -->
         <div class="mb-6 reveal">
           <span
@@ -183,6 +191,11 @@ const roles = ["Programador Web", "Desarrollador Full-Stack", "Ingeniero de Sist
 </section>
 
 <style>
+  @keyframes pulse-avail {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.5; }
+  }
+
   @keyframes bounce {
     0%, 100% { transform: translateY(0); opacity: 0.6; }
     50%       { transform: translateY(6px); opacity: 1; }
