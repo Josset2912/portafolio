@@ -11,8 +11,11 @@ interface Props {
 
 const {
   title = "Josset Yair Portuguéz Rea — Programador Web",
-  description = "Portafolio de Josset Yair Portuguéz Rea, Programador Web y estudiante de Ingeniería de Sistemas con experiencia en React, Astro y ciencia de datos.",
+  description = "Portafolio de Josset Yair Portuguéz Rea, egresado de Ingeniería de Sistemas y Programador Web con experiencia en React, Astro, TypeScript y desarrollo de soluciones digitales para empresas.",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.png', Astro.site);
 ---
 
 <!doctype html>
@@ -32,21 +35,34 @@ const {
     <meta name="theme-color" content="#00acac" />
     <meta name="description" content={description} />
     <meta name="author" content="Josset Yair Portuguéz Rea" />
+    <meta name="keywords" content="programador web, desarrollador frontend, React, Astro, TypeScript, Tailwind, Node.js, Python, portafolio, Perú, trabajo remoto" />
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.png" />
-    <meta property="og:url" content="https://jossetportuguez.dev" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Josset Portuguéz — Portafolio" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Josset Yair Portuguéz Rea — Programador Web" />
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Josset Yair Portuguéz Rea",
       "jobTitle": "Programador Web",
-      "url": "https://josset-portuguez-rea-dev.netlify.app",
+      "url": Astro.site?.href || "https://josset-portuguez-rea-dev.netlify.app",
       "email": "jossetpr@gmail.com",
       "sameAs": [
         "https://github.com/Josset2912",
@@ -116,6 +132,9 @@ const {
           var labelMob = document.getElementById('lang-label-mobile');
           if (label)    label.textContent    = l === 'en' ? 'EN' : 'ES';
           if (labelMob) labelMob.textContent = l === 'en' ? 'EN' : 'ES';
+          // Update CV download tooltip
+          var cvBtn = document.getElementById('cv-download-btn');
+          if (cvBtn) cvBtn.title = l === 'en' ? 'CV (Spanish)' : 'CV en español';
           // Persist
           try { localStorage.setItem('lang', l); } catch (e) {}
         }
