@@ -6,7 +6,7 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tu-dominio.vercel.app',
+  site: 'https://josset-portuguez-rea-dev.netlify.app',
 
   vite: {
     plugins: [tailwindcss()],
