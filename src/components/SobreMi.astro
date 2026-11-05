@@ -8,6 +8,7 @@ const months = (now.getFullYear() - expStart.getFullYear()) * 12 + now.getMonth(
 const expYears = Math.floor(months / 12);
 const expText = expYears >= 1 ? `${expYears}+` : "<1";
 const expLabel = expYears === 1 ? "año de experiencia" : "años de experiencia";
+const projectsCount = perfil.proyectos.length;
 
 const mainTechs = [
   { name: "React",        tag: "Frontend"  },
@@ -37,19 +38,19 @@ const mainTechs = [
         <!-- Stats grid -->
         <div class="mt-8 grid grid-cols-2 gap-3">
           <div class="stat-card">
-            <span class="stat-num">483</span>
+            <span class="stat-num" data-target="483">0</span>
             <span class="stat-label">contribuciones GitHub</span>
           </div>
           <div class="stat-card">
-            <span class="stat-num">{expText}</span>
+            <span class="stat-num" data-target={expYears >= 1 ? expYears : 0} data-suffix="+">0+</span>
             <span class="stat-label">{expLabel}</span>
           </div>
           <div class="stat-card">
-            <span class="stat-num">{perfil.proyectos.length}</span>
+            <span class="stat-num" data-target={projectsCount}>0</span>
             <span class="stat-label">proyectos publicados</span>
           </div>
           <div class="stat-card">
-            <span class="stat-num">15+</span>
+            <span class="stat-num" data-target="15" data-suffix="+">0+</span>
             <span class="stat-label">tecnologías</span>
           </div>
         </div>
@@ -235,3 +236,29 @@ const mainTechs = [
     .main-tech-card:last-child { border-radius: 0 0 10px 0; }
   }
 </style>
+
+<script>
+  const statEls = document.querySelectorAll<HTMLElement>('.stat-num[data-target]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      const target = parseInt(el.dataset.target || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1400;
+      const start = performance.now();
+
+      function tick(now: number) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+
+  statEls.forEach(el => observer.observe(el));
+</script>

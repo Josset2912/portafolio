@@ -188,6 +188,13 @@ const links = [
     color: var(--text);
     background: var(--surface-2);
   }
+  .nav-link.active {
+    color: var(--accent);
+    background: var(--accent-bg);
+  }
+  .mobile-link.active {
+    color: var(--accent);
+  }
 
   /* ── Right actions ── */
   .nav-actions {
@@ -399,4 +406,27 @@ const links = [
 
   btn?.addEventListener('click', () => open ? closeMenu() : openMenu());
   (window as any).closeMenu = closeMenu;
+
+  /* ── Active nav link on scroll ── */
+  const sections = document.querySelectorAll<HTMLElement>('section[id]');
+  const navLinkEls = document.querySelectorAll<HTMLAnchorElement>('.nav-link');
+  const mobileLinkEls = document.querySelectorAll<HTMLAnchorElement>('.mobile-link');
+
+  function setActive(id: string) {
+    [...navLinkEls, ...mobileLinkEls].forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+    });
+  }
+
+  function updateActive() {
+    const threshold = window.scrollY + window.innerHeight * 0.35;
+    let activeId = '';
+    sections.forEach(s => {
+      if (s.offsetTop <= threshold) activeId = s.id;
+    });
+    if (activeId) setActive(activeId);
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
 </script>

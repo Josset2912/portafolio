@@ -29,6 +29,7 @@ const {
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#00acac" />
     <meta name="description" content={description} />
     <meta name="author" content="Josset Yair Portuguéz Rea" />
     <meta property="og:title" content={title} />
@@ -40,6 +41,18 @@ const {
     <meta name="twitter:image" content="/og-image.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Josset Yair Portuguéz Rea",
+      "jobTitle": "Programador Web",
+      "url": "https://josset-portuguez-rea-dev.netlify.app",
+      "email": "jossetpr@gmail.com",
+      "sameAs": [
+        "https://github.com/Josset2912",
+        "https://www.linkedin.com/in/josset-yair-portugu%C3%A9z-rea"
+      ]
+    })} />
   </head>
   <body>
     <!-- Custom cursor (desktop only) -->

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tu-dominio.vercel.app/sitemap-index.xml
+Sitemap: https://josset-portuguez-rea-dev.netlify.app/sitemap-index.xml
