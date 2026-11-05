@@ -61,20 +61,24 @@ import { perfil } from "../data/perfil";
             <label>No completar: <input name="bot-field" /></label>
           </p>
 
-          <div class="form-row">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
             <input
               type="text"
               name="nombre"
               placeholder="Tu nombre"
               required
-              class="form-input"
+              style="width:100%;padding:0.7rem 0.9rem;background:var(--surface-2);border:1.5px solid var(--border-2);border-radius:8px;font-family:var(--font-body);font-size:0.85rem;color:var(--text);outline:none;transition:border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--accent-border)'"
+              onblur="this.style.borderColor='var(--border-2)'"
             />
             <input
               type="email"
               name="email"
               placeholder="Tu email"
               required
-              class="form-input"
+              style="width:100%;padding:0.7rem 0.9rem;background:var(--surface-2);border:1.5px solid var(--border-2);border-radius:8px;font-family:var(--font-body);font-size:0.85rem;color:var(--text);outline:none;transition:border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--accent-border)'"
+              onblur="this.style.borderColor='var(--border-2)'"
             />
           </div>
           <textarea
@@ -82,9 +86,11 @@ import { perfil } from "../data/perfil";
             placeholder="Cuéntame sobre tu proyecto..."
             rows="4"
             required
-            class="form-input form-textarea"
+            style="width:100%;padding:0.7rem 0.9rem;background:var(--surface-2);border:1.5px solid var(--border-2);border-radius:8px;font-family:var(--font-body);font-size:0.85rem;color:var(--text);outline:none;resize:vertical;min-height:90px;transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='var(--accent-border)'"
+            onblur="this.style.borderColor='var(--border-2)'"
           ></textarea>
-          <button type="submit" class="cta-primary form-submit">
+          <button type="submit" class="cta-primary" style="border:none;cursor:pointer;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <line x1="22" y1="2" x2="11" y2="13"/>
               <polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -345,44 +351,6 @@ import { perfil } from "../data/perfil";
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-  }
-
-  @media (max-width: 480px) {
-    .form-row { grid-template-columns: 1fr; }
-  }
-
-  .form-input {
-    width: 100%;
-    padding: 0.7rem 0.9rem;
-    background: var(--surface-2);
-    border: 1px solid var(--border-2);
-    border-radius: 8px;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: var(--text);
-    transition: border-color 0.2s, background 0.2s;
-    outline: none;
-  }
-
-  .form-input::placeholder { color: var(--muted-2); }
-
-  .form-input:focus {
-    border-color: var(--accent-border);
-    background: var(--surface);
-  }
-
-  .form-textarea { resize: vertical; min-height: 90px; }
-
-  .form-submit {
-    border: none;
-    cursor: pointer;
-    font-size: 0.9rem;
   }
 
   .form-success {
